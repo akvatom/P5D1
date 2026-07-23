@@ -24,7 +24,6 @@
     <div class="header-inner">
       <div class="brand">
         <h1 data-i18n="brandTitle">5D-профиль личности</h1>
-        <p data-i18n="brandSubtitle">Тестирование, визуализация, обмен профилем и расчёт совместимости</p>
       </div>
       <div class="header-actions">
         <div class="language-switch" aria-label="Language">
@@ -47,7 +46,7 @@
       <div class="section-head">
         <div>
           <h2 data-i18n="testTitle">Определение пяти параметров</h2>
-          <p data-i18n="testDescription">Ответьте на 52 утверждения по семибалльной шкале. 48 ответов формируют пять параметров, ещё 4 проверяют согласованность.</p>
+          <p data-i18n="testDescription">Ответьте на 100 утверждений: «Да», «Нет» или «Не могу оценить». 90 ответов формируют пять параметров, ещё 10 проверяют согласованность.</p>
         </div>
         <div class="button-row">
           <button id="demoAnswersBtn" class="btn small" data-i18n="demoAnswers">Заполнить демо</button>
@@ -59,18 +58,14 @@
         <article class="card test-card">
           <div class="test-progress"><div id="testProgressBar"></div></div>
           <div class="question-meta">
-            <span id="questionCounter">Вопрос 1 из 52</span>
+            <span id="questionCounter">Вопрос 1 из 100</span>
             <span id="questionAxis">Самооценка</span>
           </div>
 
           <h3 id="questionText" class="question-text"></h3>
-          <div id="questionHint" class="question-hint" data-i18n="questionHint">Оцените, насколько утверждение похоже на вас: 1 — совсем не похоже, 7 — полностью похоже.</div>
+          <div id="questionHint" class="question-hint" data-i18n="questionHint">Отвечайте о своём обычном поведении за последние 12 месяцев. Выберите «Не могу оценить», если подходящей ситуации не было.</div>
 
           <div class="answer-scale">
-            <div class="scale-labels">
-              <span id="leftAnswerLabel"></span>
-              <span id="rightAnswerLabel"></span>
-            </div>
             <div id="answerOptions" class="answer-options"></div>
           </div>
 
@@ -84,14 +79,14 @@
           <div class="card">
             <div class="card-title-row">
               <h3 data-i18n="testStructure">Структура теста</h3>
-              <span id="questionCountBadge" class="status-pill">52 вопроса</span>
+              <span id="questionCountBadge" class="status-pill">100 вопросов</span>
             </div>
             <div class="axis-preview-list">
-              <div class="axis-preview"><strong style="color:var(--x)" data-i18n="axisPreviewXTitle">X · Социальная направленность</strong><div data-i18n="axisPreviewXText">Интроверсия ↔ экстраверсия.</div></div>
-              <div class="axis-preview"><strong style="color:var(--y)" data-i18n="axisPreviewYTitle">Y · Эмоциональная регуляция</strong><div data-i18n="axisPreviewYText">Чувствительность ↔ стабильность.</div></div>
-              <div class="axis-preview"><strong style="color:var(--z)" data-i18n="axisPreviewZTitle">Z · Стратегия мышления</strong><div data-i18n="axisPreviewZText">Прагматизм ↔ абстрактность.</div></div>
-              <div class="axis-preview"><strong style="color:var(--t)" data-i18n="axisPreviewTTitle">T · Диапазон гибкости</strong><div data-i18n="axisPreviewTText">Ригидность ↔ ролевая пластичность.</div></div>
-              <div class="axis-preview"><strong style="color:var(--c)" data-i18n="axisPreviewCTitle">C · Аутентичность</strong><div data-i18n="axisPreviewCText">Самопредательство ↔ свободный выбор.</div></div>
+              <div class="axis-preview"><strong style="color:var(--x)" data-i18n="axisPreviewXTitle">X · Социальная направленность</strong><div data-i18n="axisPreviewXText">Интроверсия ↔ экстраверсия · 16 расчётных вопросов.</div></div>
+              <div class="axis-preview"><strong style="color:var(--y)" data-i18n="axisPreviewYTitle">Y · Эмоциональная регуляция</strong><div data-i18n="axisPreviewYText">Чувствительность ↔ стабильность · 20 расчётных вопросов.</div></div>
+              <div class="axis-preview"><strong style="color:var(--z)" data-i18n="axisPreviewZTitle">Z · Стратегия мышления</strong><div data-i18n="axisPreviewZText">Прагматизм ↔ абстрактность · 16 расчётных вопросов.</div></div>
+              <div class="axis-preview"><strong style="color:var(--t)" data-i18n="axisPreviewTTitle">T · Диапазон гибкости</strong><div data-i18n="axisPreviewTText">Ригидность ↔ ролевая пластичность · 18 расчётных вопросов.</div></div>
+              <div class="axis-preview"><strong style="color:var(--c)" data-i18n="axisPreviewCTitle">C · Аутентичность</strong><div data-i18n="axisPreviewCText">Самоподавление ↔ свободный выбор · 20 расчётных вопросов.</div></div>
             </div>
           </div>
 
@@ -145,6 +140,18 @@
           </div>
 
           <div class="card">
+            <h3 data-i18n="measurementQuality">Надёжность измерения</h3>
+            <p class="caption" data-i18n="measurementQualityCaption">Покрытие показывает, на какую долю расчётных вопросов дано «Да» или «Нет». «Не могу оценить» не меняет координату.</p>
+            <div id="qualityBreakdown" class="quality-grid" style="margin-top:12px;"></div>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="detailedScales">Детализация шкал</h3>
+            <p class="caption" data-i18n="subscaleIntro">Субшкалы помогают отличать внешне похожие профили: например, силу эмоциональной реакции от контроля поведения.</p>
+            <div id="subscaleBreakdown" class="subscale-grid" style="margin-top:12px;"></div>
+          </div>
+
+          <div class="card">
             <h3 data-i18n="textSummary">Текстовая сводка</h3>
             <div id="profileSummary" class="stack" style="gap:9px;"></div>
           </div>
@@ -194,7 +201,7 @@
 
         <div class="card">
           <h3 data-i18n="partnerProfile">Профиль второго человека</h3>
-          <textarea id="partnerCodeInput" class="code-box" data-i18n-placeholder="partnerPlaceholder" placeholder="P5D1|20|-15|30|25|-10 или пять чисел через запятую"></textarea>
+          <textarea id="partnerCodeInput" class="code-box" data-i18n-placeholder="partnerPlaceholder" placeholder="P5D2|20|-15|30|25|-10 или пять чисел через запятую"></textarea>
           <div class="button-row" style="margin-top:10px;">
             <button id="applyPartnerCodeBtn" class="btn primary" data-i18n="applyCode">Применить код</button>
             <button id="startQrScannerBtn" class="btn" data-i18n="scanCamera">Сканировать камерой</button>
@@ -253,15 +260,6 @@
               <div id="partnerSummary" class="stack" style="gap:9px; margin-top:14px;"></div>
             </div>
 
-            <div class="card">
-              <h3 data-i18n="resourceAndTerm">Ресурс и условный срок</h3>
-              <div class="manual-grid">
-                <label class="caption"><span data-i18n="resourceLabel">Внутренний ресурс R</span><input id="resourceInput" class="input" type="number" min="1" max="10000" step="1" value="100" /></label>
-                <label class="caption"><span data-i18n="stressLabel">Внешняя нагрузка S</span><input id="stressInput" class="input" type="number" min="0.1" max="10" step="0.1" value="1" /></label>
-              </div>
-              <div id="shelfLifeSummary" class="summary-block" style="margin-top:11px;"></div>
-            </div>
-
             <details>
               <summary data-i18n="showFormulas">Показать формулы прототипа</summary>
               <div class="details-body">
@@ -272,9 +270,7 @@
                   Sz = clamp(1 − ΔZ / 100)<br /><br />
                   KT = ((T₁ + 50) + (T₂ + 50)) / 200<br />
                   KC = ((C₁ + 50)(C₂ + 50)) / 10000<br />
-                  K = B × KT × KC<br /><br />
-                  Time = R / (ΔBasis × |C₋| × S)
-                </div>
+                  K = B × KT × KC</div>
               </div>
             </details>
           </div>

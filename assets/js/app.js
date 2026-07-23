@@ -103,7 +103,7 @@ function derive(profile) {
 }
 
 function profileCode(profile) {
-  return `P5D1|${round(profile.x)}|${round(profile.y)}|${round(profile.z)}|${round(profile.t)}|${round(profile.c)}`;
+  return `P5D2|${round(profile.x)}|${round(profile.y)}|${round(profile.z)}|${round(profile.t)}|${round(profile.c)}`;
 }
 
 function parseProfileCode(raw) {
@@ -117,7 +117,7 @@ function parseProfileCode(raw) {
 
   const normalized = value.replace(/\s+/g, "");
   let parts;
-  if (/^P5D1\|/i.test(normalized)) parts = normalized.split("|").slice(1);
+  if (/^P5D[12]\|/i.test(normalized)) parts = normalized.split("|").slice(1);
   else parts = normalized.split(/[;,|]/);
 
   if (parts.length !== 5) throw new Error(tr("fiveCoordinates"));
@@ -126,70 +126,114 @@ function parseProfileCode(raw) {
   return sanitizeProfile({ name: tr("partnerDefault"), x: nums[0], y: nums[1], z: nums[2], t: nums[3], c: nums[4], color: "#ff8ab3" }, tr("partnerDefault"));
 }
 
+function answerValue(raw) {
+  if (raw === "yes") return 1;
+  if (raw === "no") return -1;
+  return null;
+}
+
 function orientedAnswer(question, raw) {
-  const value = Number(raw);
-  return question.reverse ? 8 - value : value;
+  const value = answerValue(raw);
+  if (value === null) return null;
+  return question.reverse ? -value : value;
 }
 
 function calculateTestResult() {
-  const buckets = { x: [], y: [], z: [], t: [], c: [] };
+  const axes = ["x", "y", "z", "t", "c"];
+  const buckets = Object.fromEntries(axes.map(axis => [axis, []]));
+  const totals = Object.fromEntries(axes.map(axis => [axis, 0]));
+  const subscaleBuckets = {};
   const byId = new Map(TEST_QUESTIONS.map((question, index) => [question.id, { question, index }]));
 
   TEST_QUESTIONS.forEach((question, index) => {
     if (question.kind !== "score") return;
-    const raw = Number(state.answers[index]);
-    if (Number.isFinite(raw)) buckets[question.axis].push(orientedAnswer(question, raw));
+    totals[question.axis] += 1;
+    const oriented = orientedAnswer(question, state.answers[index]);
+    if (oriented === null) return;
+    buckets[question.axis].push(oriented);
+    if (!subscaleBuckets[question.subscale]) subscaleBuckets[question.subscale] = [];
+    subscaleBuckets[question.subscale].push(oriented);
   });
 
+  const coverage = Object.fromEntries(axes.map(axis => [axis, buckets[axis].length / Math.max(1, totals[axis])]));
   const score = axis => {
     const values = buckets[axis];
     if (!values.length) return 0;
-    const average = values.reduce((sum, item) => sum + item, 0) / values.length;
-    return round(((average - 4) / 3) * 50);
+    return round(values.reduce((sum, value) => sum + value, 0) / values.length * 50);
   };
+  const subscales = Object.fromEntries(Object.entries(QUESTION_BANK.subscales || {}).map(([key]) => {
+    const values = subscaleBuckets[key] || [];
+    const value = values.length ? round(values.reduce((sum, item) => sum + item, 0) / values.length * 50) : null;
+    return [key, { value, answered: values.length }];
+  }));
 
-  const differences = TEST_QUESTIONS.filter(question => question.kind === "consistency").map(question => {
-    const checkIndex = TEST_QUESTIONS.indexOf(question);
+  const checkResults = [];
+  const consistencyByAxis = Object.fromEntries(axes.map(axis => [axis, []]));
+  TEST_QUESTIONS.forEach((question, index) => {
+    if (question.kind !== "consistency") return;
     const baseEntry = byId.get(question.compareTo);
-    const checkRaw = Number(state.answers[checkIndex]);
-    const baseRaw = Number(state.answers[baseEntry.index]);
-    if (!Number.isFinite(checkRaw) || !Number.isFinite(baseRaw)) return 6;
-    return Math.abs(orientedAnswer(question, checkRaw) - orientedAnswer(baseEntry.question, baseRaw));
+    if (!baseEntry) return;
+    const check = orientedAnswer(question, state.answers[index]);
+    const base = orientedAnswer(baseEntry.question, state.answers[baseEntry.index]);
+    if (check === null || base === null) return;
+    const matched = check === base ? 1 : 0;
+    checkResults.push(matched);
+    consistencyByAxis[question.axis].push(matched);
   });
-  const averageDifference = differences.reduce((sum, value) => sum + value, 0) / Math.max(1, differences.length);
-  const consistency = round(clamp01(1 - averageDifference / 6) * 100);
+  const consistency = checkResults.length ? round(checkResults.reduce((sum, value) => sum + value, 0) / checkResults.length * 100) : null;
+  const axisConsistency = Object.fromEntries(axes.map(axis => {
+    const values = consistencyByAxis[axis];
+    return [axis, values.length ? round(values.reduce((sum, value) => sum + value, 0) / values.length * 100) : null];
+  }));
+  const overallCoverage = axes.reduce((sum, axis) => sum + buckets[axis].length, 0) / axes.reduce((sum, axis) => sum + totals[axis], 0);
+  const consistencyFactor = consistency === null ? 0.85 : 0.70 + 0.30 * (consistency / 100);
+  const confidence = round(clamp01(overallCoverage * consistencyFactor) * 100);
+  const axisConfidence = Object.fromEntries(axes.map(axis => {
+    const factor = axisConsistency[axis] === null ? 0.85 : 0.70 + 0.30 * (axisConsistency[axis] / 100);
+    return [axis, round(clamp01(coverage[axis] * factor) * 100)];
+  }));
 
   return {
     profile: sanitizeProfile({
       name: tr("profileDefault"),
       x: score("x"), y: score("y"), z: score("z"), t: score("t"), c: score("c"), color: "#72aaff"
     }),
-    quality: { consistency, averageDifference: round(averageDifference, 2), checks: differences.length }
+    quality: {
+      consistency, validChecks: checkResults.length, coverage, overallCoverage: round(overallCoverage * 100),
+      confidence, axisConfidence, axisConsistency, subscales
+    }
   };
 }
 
+function answerIsSet(index) {
+  return Object.prototype.hasOwnProperty.call(state.answers, index);
+}
+
 function allQuestionsAnswered() {
-  return TEST_QUESTIONS.every((_, index) => Number.isFinite(Number(state.answers[index])));
+  return TEST_QUESTIONS.every((_, index) => answerIsSet(index));
 }
 
 function renderQuestion() {
   const question = TEST_QUESTIONS[state.currentQuestion];
   if (!question) return;
-  const currentAnswer = Number(state.answers[state.currentQuestion]);
+  const currentAnswer = state.answers[state.currentQuestion];
   els.questionCounter.textContent = tr("questionCounter", { current: state.currentQuestion + 1, total: TEST_QUESTIONS.length });
   els.questionAxis.textContent = tr("statementLabel");
   els.questionText.textContent = questionText(question);
-  els.leftAnswerLabel.textContent = state.lang === "ru" ? "1 · Совсем не похоже" : "1 · Not at all like me";
-  els.rightAnswerLabel.textContent = state.lang === "ru" ? "7 · Полностью похоже" : "7 · Completely like me";
   els.testProgressBar.style.width = `${((state.currentQuestion + 1) / TEST_QUESTIONS.length) * 100}%`;
   els.prevQuestionBtn.disabled = state.currentQuestion === 0;
-  els.nextQuestionBtn.disabled = !Number.isFinite(currentAnswer);
+  els.nextQuestionBtn.disabled = !answerIsSet(state.currentQuestion);
   els.nextQuestionBtn.textContent = state.currentQuestion === TEST_QUESTIONS.length - 1 ? tr("finish") : tr("next");
 
+  const options = [
+    ["yes", tr("answerYes"), "yes"],
+    ["no", tr("answerNo"), "no"],
+    ["na", tr("answerUnknown"), "unknown"]
+  ];
   els.answerOptions.innerHTML = "";
-  for (let value = 1; value <= 7; value += 1) {
+  options.forEach(([value, text, className]) => {
     const wrapper = document.createElement("div");
-    wrapper.className = "answer-option";
+    wrapper.className = `answer-option ${className}`;
     const input = document.createElement("input");
     input.type = "radio";
     input.name = "testAnswer";
@@ -198,7 +242,7 @@ function renderQuestion() {
     input.checked = currentAnswer === value;
     const label = document.createElement("label");
     label.htmlFor = input.id;
-    label.textContent = value;
+    label.textContent = text;
     input.addEventListener("change", () => {
       state.answers[state.currentQuestion] = value;
       saveJson(STORAGE.answers, state.answers);
@@ -206,12 +250,18 @@ function renderQuestion() {
     });
     wrapper.append(input, label);
     els.answerOptions.appendChild(wrapper);
-  }
+  });
 }
 
 function finishTest() {
   if (!allQuestionsAnswered()) return;
   const result = calculateTestResult();
+  const minimum = Number(QUESTION_BANK.scoring?.minimum_axis_coverage ?? 0.5);
+  const insufficient = Object.entries(result.quality.coverage).filter(([, value]) => value < minimum).map(([axis]) => axis.toUpperCase());
+  if (insufficient.length) {
+    alert(tr("insufficientCoverage", { axes: insufficient.join(", "), percent: format(minimum * 100, 0) }));
+    return;
+  }
   state.testProfile = result.profile;
   state.profile = { ...result.profile };
   state.quality = result.quality;
@@ -321,16 +371,16 @@ function renderProfileView() {
   if (!state.profile) return;
   const profile = state.profile;
   const derived = derive(profile);
-  const qualityScore = state.quality?.consistency ?? 0;
+  const qualityScore = state.quality?.confidence ?? 0;
   els.profileMetrics.innerHTML = ["x","y","z","t","c"].map(axis => createMetric(axis, profile[axis])).join("") + `<div class="metric"><div class="label">${escapeHtml(tr("qualityLabel"))}</div><div class="value">${format(qualityScore,0)}%</div></div>`;
   els.profileScales.innerHTML = ["x","y","z","t","c"].map(axis => createScale(axis, profile[axis])).join("");
   els.profileSummary.innerHTML = ["x","y","z","t","c"].map(axis => {
     const summary = axisSummary(axis, profile[axis]);
     return `<div class="summary-block"><strong>${escapeHtml(summary.title)}</strong><p>${escapeHtml(summary.text)}</p></div>`;
   }).join("") + `<div class="summary-block"><strong>${escapeHtml(tr("geometryTitle"))}</strong><p>${escapeHtml(tr("geometryText", {outer:format(derived.outer), inner:format(derived.inner), risk:format(derived.risk), share:format(derived.safeShare*100)}))}</p></div>` + (() => {
-    const score = state.quality?.consistency ?? 0;
-    const level = score >= 85 ? tr("qualityHigh") : score >= 65 ? tr("qualityMedium") : tr("qualityLow");
-    return `<div class="summary-block"><strong>${escapeHtml(tr("qualityLabel"))}: ${format(score,0)}%</strong><p>${escapeHtml(tr("qualitySummary", {score:format(score,0), level}))}</p></div>`;
+    const consistency = state.quality?.consistency;
+    const coverage = state.quality?.overallCoverage ?? 0;
+    return `<div class="summary-block"><strong>${escapeHtml(tr("qualityLabel"))}: ${format(qualityScore,0)}%</strong><p>${escapeHtml(tr("qualitySummary", {confidence:format(qualityScore,0), coverage:format(coverage,0), consistency:consistency === null || consistency === undefined ? "—" : format(consistency,0)}))}</p></div>`;
   })();
 
   const ranges = getRecommendedRanges(profile);
@@ -338,6 +388,28 @@ function renderProfileView() {
     const meta = axisMeta(item.axis);
     return `<div class="range-item"><div class="axis" style="color:${meta.color}">${meta.short} · ${escapeHtml(meta.name)}</div><div class="range">${escapeHtml(intervalText(item.intervals))}</div><div class="reason">${escapeHtml(item.reason)}</div></div>`;
   }).join("");
+
+  if (els.qualityBreakdown) {
+    els.qualityBreakdown.innerHTML = ["x","y","z","t","c"].map(axis => {
+      const meta = axisMeta(axis);
+      const coverage = (state.quality?.coverage?.[axis] ?? 0) * 100;
+      const confidence = state.quality?.axisConfidence?.[axis] ?? 0;
+      return `<div class="quality-row"><div><strong style="color:${meta.color}">${meta.short}</strong><span>${escapeHtml(meta.name)}</span></div><div class="quality-values"><span>${escapeHtml(tr("coverageLabel"))}: ${format(coverage,0)}%</span><b>${format(confidence,0)}%</b></div></div>`;
+    }).join("");
+  }
+
+  if (els.subscaleBreakdown) {
+    const entries = Object.entries(QUESTION_BANK.subscales || {});
+    els.subscaleBreakdown.innerHTML = entries.map(([key, metadata]) => {
+      const result = state.quality?.subscales?.[key];
+      const value = result?.value;
+      const axis = metadata.axis;
+      const meta = axisMeta(axis);
+      const label = metadata[state.lang] || metadata.ru || key;
+      const position = value === null || value === undefined ? 50 : value + 50;
+      return `<div class="subscale-item"><div class="subscale-head"><span><b style="color:${meta.color}">${meta.short}</b> ${escapeHtml(label)}</span><strong>${value === null || value === undefined ? "—" : `${value > 0 ? "+" : ""}${format(value,0)}`}</strong></div><div class="mini-bar"><i style="left:${position}%;background:${meta.color}"></i></div></div>`;
+    }).join("");
+  }
 
   renderQr();
   renderManualEditor();
@@ -377,7 +449,7 @@ function miniProfileHtml(profile, label) {
   return `<div class="profile-dot" style="color:${profile.color};background:${profile.color}"></div><div><strong>${escapeHtml(label)}</strong><span>${[profile.x,profile.y,profile.z,profile.t,profile.c].map(v => v>0?`+${format(v,0)}`:format(v,0)).join(" · ")}</span></div>`;
 }
 
-function calculatePairAnalysis(a, b, resource = 100, stress = 1) {
+function calculatePairAnalysis(a, b) {
   const da = derive(a), db = derive(b);
   const dx = Math.abs(a.x - b.x), dy = Math.abs(a.y - b.y), dz = Math.abs(a.z - b.z);
   const distance = Math.hypot(dx, dy, dz);
@@ -405,10 +477,6 @@ function calculatePairAnalysis(a, b, resource = 100, stress = 1) {
   else if (distanceLoad > .72 && flex > .72 && auth > .62) { level = "HARD"; difficulty = Math.max(difficulty, 57); }
   else if (resonanceLoad > .68 && flex > .65 && auth > .60) { level = "EXPERT"; difficulty = Math.max(difficulty, 70); }
 
-  const negativeAuthenticity = (Math.max(0,-a.c) + Math.max(0,-b.c)) / 100;
-  const burnRate = distanceLoad * negativeAuthenticity * Math.max(.1, Number(stress) || 1);
-  const shelfLife = burnRate > 0.000001 ? Math.max(1, Number(resource) || 100) / burnRate : Infinity;
-
   const diagnostics = [];
   if (basis > .72 && (flex < .35 || auth < .28)) diagnostics.push([tr("diagImaginaryTitle"), tr("diagImaginaryText")]);
   if (flex > .65 && auth < .35) diagnostics.push([tr("diagCreditTitle"), tr("diagCreditText")]);
@@ -420,7 +488,7 @@ function calculatePairAnalysis(a, b, resource = 100, stress = 1) {
   else diagnostics.push([tr("diagRiskTitle"), tr("diagRiskText")]);
   if (resonanceLoad > .65) diagnostics.push([tr("diagResonanceTitle"), tr("diagResonanceText")]);
 
-  return { dx,dy,dz,distance,basis,flex,auth,compatibility,fullCoverage,safeCoverage,riskDependency,difficulty,level,burnRate,shelfLife,diagnostics };
+  return { dx,dy,dz,distance,basis,flex,auth,compatibility,fullCoverage,safeCoverage,riskDependency,difficulty,level,diagnostics };
 }
 
 function renderComparison() {
@@ -428,9 +496,7 @@ function renderComparison() {
     els.comparisonResults.classList.remove("active");
     return;
   }
-  const resource = Number(els.resourceInput.value) || 100;
-  const stress = Number(els.stressInput.value) || 1;
-  const analysis = calculatePairAnalysis(state.profile, state.partner, resource, stress);
+  const analysis = calculatePairAnalysis(state.profile, state.partner);
   els.comparisonResults.classList.add("active");
   compareScene?.setProfiles([{...state.profile,name:tr("you")},{...state.partner,name:tr("partner")}], true);
   els.partnerScales.innerHTML = ["x","y","z","t","c"].map(axis => createScale(axis, state.partner[axis], {color:state.partner.color})).join("");
@@ -449,8 +515,6 @@ function renderComparison() {
   els.difficultyBadge.textContent = analysis.level;
   els.difficultyBadge.className = `difficulty-badge ${analysis.level.toLowerCase()}`;
   els.diagnosticsList.innerHTML = analysis.diagnostics.map(([title,text]) => `<div class="diagnostic-item"><strong>${escapeHtml(title)}</strong><span>${escapeHtml(text)}</span></div>`).join("");
-  const lifeText = Number.isFinite(analysis.shelfLife) ? tr("conditionalPeriods", {value:format(analysis.shelfLife,1)}) : tr("lifeUnlimited");
-  els.shelfLifeSummary.innerHTML = `<strong>${escapeHtml(tr("conditionalTerm", {value:lifeText}))}</strong><p>${escapeHtml(tr("burnRate", {value:format(analysis.burnRate,3)}))}</p>`;
 }
 
 
@@ -513,8 +577,8 @@ function applyPartnerRaw(raw) {
 
 document.querySelectorAll("[data-view-target]").forEach(button=>button.addEventListener("click",()=>showView(button.dataset.viewTarget)));
 els.prevQuestionBtn.addEventListener("click",()=>{ if(state.currentQuestion>0){state.currentQuestion-=1;renderQuestion();} });
-els.nextQuestionBtn.addEventListener("click",()=>{ if(!Number.isFinite(Number(state.answers[state.currentQuestion])))return; if(state.currentQuestion<TEST_QUESTIONS.length-1){state.currentQuestion+=1;renderQuestion();}else finishTest(); });
-els.demoAnswersBtn.addEventListener("click",()=>{ TEST_QUESTIONS.forEach((question,i)=>{ const base=[3,4,5,6,5,4,6][i%7]; state.answers[i]=question.reverse ? 8-base : base; }); saveJson(STORAGE.answers,state.answers); state.currentQuestion=0; renderQuestion(); });
+els.nextQuestionBtn.addEventListener("click",()=>{ if(!answerIsSet(state.currentQuestion))return; if(state.currentQuestion<TEST_QUESTIONS.length-1){state.currentQuestion+=1;renderQuestion();}else finishTest(); });
+els.demoAnswersBtn.addEventListener("click",()=>{ TEST_QUESTIONS.forEach((question,i)=>{ state.answers[i] = i % 13 === 0 ? "na" : ((i + (question.reverse ? 1 : 0)) % 3 === 0 ? "no" : "yes"); }); saveJson(STORAGE.answers,state.answers); state.currentQuestion=0; renderQuestion(); });
 els.resetTestBtn.addEventListener("click",()=>{ state.answers={}; state.quality=null; state.currentQuestion=0; localStorage.removeItem(STORAGE.answers); localStorage.removeItem(STORAGE.quality); renderQuestion(); });
 els.retakeTestBtn.addEventListener("click",()=>{ state.currentQuestion=0; showView("test"); renderQuestion(); });
 els.goCompareBtn.addEventListener("click",()=>showView("compare"));
@@ -526,8 +590,6 @@ els.startQrScannerBtn.addEventListener("click",startQrScanner);
 els.stopQrScannerBtn.addEventListener("click",stopQrScanner);
 els.uploadQrBtn.addEventListener("click",()=>els.qrFileInput.click());
 els.qrFileInput.addEventListener("change",()=>scanQrFile(els.qrFileInput.files[0]));
-els.resourceInput.addEventListener("input",renderComparison);
-els.stressInput.addEventListener("input",renderComparison);
 document.querySelectorAll(".profile-view-btn").forEach(button=>button.addEventListener("click",()=>profileScene?.setView(button.dataset.sceneView)));
 document.querySelectorAll(".compare-view-btn").forEach(button=>button.addEventListener("click",()=>compareScene?.setView(button.dataset.sceneView)));
 

@@ -1,9 +1,9 @@
 export const STORAGE = {
-      profile: "p5d-profile-v3",
-      testProfile: "p5d-test-profile-v3",
-      answers: "p5d-test-answers-v3",
-      partner: "p5d-partner-v3",
-      quality: "p5d-test-quality-v3",
+      profile: "p5d-profile-v4",
+      testProfile: "p5d-test-profile-v4",
+      answers: "p5d-test-answers-v4",
+      partner: "p5d-partner-v4",
+      quality: "p5d-test-quality-v4",
       language: "p5d-language-v1"
     };
 
