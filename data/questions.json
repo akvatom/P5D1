@@ -1,0 +1,447 @@
+{
+  "version": "P5D-questions-v1",
+  "scale": {
+    "min": 1,
+    "max": 7,
+    "ru": {
+      "1": "Совсем не похоже",
+      "7": "Полностью похоже"
+    },
+    "en": {
+      "1": "Not at all like me",
+      "7": "Completely like me"
+    }
+  },
+  "scoring": {
+    "range": [
+      -50,
+      50
+    ],
+    "formula": "((mean_oriented_answer - 4) / 3) * 50",
+    "reverse_answer": "8 - answer",
+    "scored_items": 48,
+    "consistency_items": 4
+  },
+  "questions": [
+    {
+      "id": "X01",
+      "axis": "x",
+      "reverse": false,
+      "ru": "Мне легко первым начать разговор с незнакомым человеком.",
+      "en": "I find it easy to start a conversation with someone I do not know.",
+      "kind": "score"
+    },
+    {
+      "id": "X02",
+      "axis": "x",
+      "reverse": false,
+      "ru": "После живого общения с людьми я чаще чувствую прилив энергии.",
+      "en": "After lively interaction with people, I usually feel more energized.",
+      "kind": "score"
+    },
+    {
+      "id": "X03",
+      "axis": "x",
+      "reverse": false,
+      "ru": "В незнакомой группе я довольно быстро начинаю участвовать в общем разговоре.",
+      "en": "In an unfamiliar group, I begin participating in the conversation fairly quickly.",
+      "kind": "score"
+    },
+    {
+      "id": "X04",
+      "axis": "x",
+      "reverse": false,
+      "ru": "Мне нравится поддерживать широкий круг знакомств и контактов.",
+      "en": "I enjoy maintaining a wide circle of acquaintances and contacts.",
+      "kind": "score"
+    },
+    {
+      "id": "X05",
+      "axis": "x",
+      "reverse": false,
+      "ru": "Мне часто легче понять собственную мысль, когда я проговариваю её вслух.",
+      "en": "I often understand my own thoughts better when I say them out loud.",
+      "kind": "score"
+    },
+    {
+      "id": "X06",
+      "axis": "x",
+      "reverse": true,
+      "ru": "После нескольких часов общения мне обычно требуется длительное уединение.",
+      "en": "After several hours of socializing, I usually need a long period of solitude.",
+      "kind": "score"
+    },
+    {
+      "id": "X07",
+      "axis": "x",
+      "reverse": true,
+      "ru": "На общих встречах мне комфортнее наблюдать со стороны, чем активно участвовать.",
+      "en": "At group gatherings, I feel more comfortable observing than actively participating.",
+      "kind": "score"
+    },
+    {
+      "id": "X08",
+      "axis": "x",
+      "reverse": true,
+      "ru": "Даже когда ситуация требует инициативы, я предпочитаю не привлекать к себе внимание.",
+      "en": "Even when a situation calls for initiative, I prefer not to draw attention to myself.",
+      "kind": "score"
+    },
+    {
+      "id": "Y01",
+      "axis": "y",
+      "reverse": false,
+      "ru": "Под сильным давлением я обычно сохраняю способность спокойно принимать решения.",
+      "en": "Under strong pressure, I usually remain able to make decisions calmly.",
+      "kind": "score"
+    },
+    {
+      "id": "Y02",
+      "axis": "y",
+      "reverse": false,
+      "ru": "После конфликта я сравнительно быстро возвращаюсь в обычное эмоциональное состояние.",
+      "en": "After a conflict, I return to my usual emotional state relatively quickly.",
+      "kind": "score"
+    },
+    {
+      "id": "Y03",
+      "axis": "y",
+      "reverse": false,
+      "ru": "Я способен выслушать резкую критику, не теряя внутреннего равновесия.",
+      "en": "I can hear harsh criticism without losing my inner balance.",
+      "kind": "score"
+    },
+    {
+      "id": "Y04",
+      "axis": "y",
+      "reverse": false,
+      "ru": "Даже при сильных эмоциях я обычно контролирую свои действия и слова.",
+      "en": "Even when emotions are strong, I usually remain in control of my actions and words.",
+      "kind": "score"
+    },
+    {
+      "id": "K01",
+      "kind": "consistency",
+      "axis": "x",
+      "reverse": true,
+      "compareTo": "X01",
+      "ru": "В новой компании я обычно жду, пока кто-нибудь другой первым заговорит со мной.",
+      "en": "In a new group, I usually wait for someone else to speak to me first."
+    },
+    {
+      "id": "Y05",
+      "axis": "y",
+      "reverse": false,
+      "ru": "Неопределённость неприятна, но редко полностью выбивает меня из рабочего состояния.",
+      "en": "Uncertainty is unpleasant, but it rarely makes me completely unable to function.",
+      "kind": "score"
+    },
+    {
+      "id": "Y06",
+      "axis": "y",
+      "reverse": true,
+      "ru": "Я подолгу прокручиваю в голове неприятные разговоры и возможные ошибки.",
+      "en": "I keep replaying unpleasant conversations and possible mistakes in my mind for a long time.",
+      "kind": "score"
+    },
+    {
+      "id": "Y07",
+      "axis": "y",
+      "reverse": true,
+      "ru": "Моё настроение может резко измениться из-за сравнительно небольшого события.",
+      "en": "My mood can change sharply because of a relatively minor event.",
+      "kind": "score"
+    },
+    {
+      "id": "Y08",
+      "axis": "y",
+      "reverse": true,
+      "ru": "После стрессовой ситуации напряжение ещё долго ощущается в мыслях или теле.",
+      "en": "After a stressful situation, tension remains in my thoughts or body for a long time.",
+      "kind": "score"
+    },
+    {
+      "id": "Z01",
+      "axis": "z",
+      "reverse": false,
+      "ru": "Мне интересны абстрактные идеи, даже когда у них пока нет практического применения.",
+      "en": "I am interested in abstract ideas even when they do not yet have a practical use.",
+      "kind": "score"
+    },
+    {
+      "id": "Z02",
+      "axis": "z",
+      "reverse": false,
+      "ru": "Я часто замечаю закономерности, которые связывают на первый взгляд разные события.",
+      "en": "I often notice patterns connecting events that initially seem unrelated.",
+      "kind": "score"
+    },
+    {
+      "id": "Z03",
+      "axis": "z",
+      "reverse": false,
+      "ru": "При решении задачи мне нравится рассматривать несколько необычных вариантов.",
+      "en": "When solving a problem, I enjoy considering several unconventional possibilities.",
+      "kind": "score"
+    },
+    {
+      "id": "Z04",
+      "axis": "z",
+      "reverse": false,
+      "ru": "Мне важно понимать общий принцип, а не только запоминать последовательность действий.",
+      "en": "It is important for me to understand the underlying principle, not just memorize a sequence of steps.",
+      "kind": "score"
+    },
+    {
+      "id": "Z05",
+      "axis": "z",
+      "reverse": false,
+      "ru": "Я легко связываю идеи из разных тем и областей знаний.",
+      "en": "I easily connect ideas from different topics and fields of knowledge.",
+      "kind": "score"
+    },
+    {
+      "id": "Z06",
+      "axis": "z",
+      "reverse": true,
+      "ru": "В новой задаче я предпочитаю получить точную инструкцию и следовать ей по шагам.",
+      "en": "With a new task, I prefer to receive precise instructions and follow them step by step.",
+      "kind": "score"
+    },
+    {
+      "id": "Z07",
+      "axis": "z",
+      "reverse": true,
+      "ru": "Проверенный способ обычно кажется мне лучше эксперимента с неизвестным результатом.",
+      "en": "A proven method usually seems better to me than an experiment with an uncertain outcome.",
+      "kind": "score"
+    },
+    {
+      "id": "Z08",
+      "axis": "z",
+      "reverse": true,
+      "ru": "Долгие разговоры о теориях и возможностях без конкретного результата кажутся мне бесполезными.",
+      "en": "Long discussions about theories and possibilities without a concrete result seem pointless to me.",
+      "kind": "score"
+    },
+    {
+      "id": "K02",
+      "kind": "consistency",
+      "axis": "y",
+      "reverse": false,
+      "compareTo": "Y02",
+      "ru": "После неприятного разговора я обычно могу довольно быстро вернуться к своим делам.",
+      "en": "After an unpleasant conversation, I can usually return to my activities fairly quickly."
+    },
+    {
+      "id": "T01",
+      "axis": "t",
+      "reverse": false,
+      "ru": "Я могу подстроить темп общения под близкого человека, если ситуация этого требует.",
+      "en": "I can adjust my communication pace to a close person when the situation requires it.",
+      "kind": "score"
+    },
+    {
+      "id": "T02",
+      "axis": "t",
+      "reverse": false,
+      "ru": "В одной ситуации я могу быть лидером, а в другой — спокойно перейти в роль слушателя.",
+      "en": "I can lead in one situation and comfortably take the role of listener in another.",
+      "kind": "score"
+    },
+    {
+      "id": "T03",
+      "axis": "t",
+      "reverse": false,
+      "ru": "Я способен на время попробовать непривычный режим жизни, чтобы найти общий формат.",
+      "en": "I can temporarily try an unfamiliar way of living in order to find a shared arrangement.",
+      "kind": "score"
+    },
+    {
+      "id": "T04",
+      "axis": "t",
+      "reverse": false,
+      "ru": "Если обстоятельства изменились, мне сравнительно легко перестроить первоначальный план.",
+      "en": "When circumstances change, I can revise the original plan relatively easily.",
+      "kind": "score"
+    },
+    {
+      "id": "T05",
+      "axis": "t",
+      "reverse": false,
+      "ru": "Я умею находить рабочий формат между людьми с очень разными привычками.",
+      "en": "I can find a workable arrangement between people with very different habits.",
+      "kind": "score"
+    },
+    {
+      "id": "T06",
+      "axis": "t",
+      "reverse": false,
+      "ru": "При необходимости я могу эффективно действовать в роли, которая мне обычно не свойственна.",
+      "en": "When needed, I can function effectively in a role that is not usually natural for me.",
+      "kind": "score"
+    },
+    {
+      "id": "T07",
+      "axis": "t",
+      "reverse": false,
+      "ru": "При несовпадении привычек я скорее попробую создать новый общий режим, чем выбрать только один из старых.",
+      "en": "When habits differ, I am more likely to create a new shared routine than simply choose one person’s existing routine.",
+      "kind": "score"
+    },
+    {
+      "id": "T08",
+      "axis": "t",
+      "reverse": false,
+      "ru": "Даже заметно меняя своё поведение под ситуацию, я обычно сохраняю эффективность.",
+      "en": "Even when I noticeably change my behavior for a situation, I usually remain effective.",
+      "kind": "score"
+    },
+    {
+      "id": "T09",
+      "axis": "t",
+      "reverse": true,
+      "ru": "Мне важно, чтобы совместная жизнь в основном строилась по привычному для меня порядку.",
+      "en": "It is important to me that shared life mostly follows the routine I am already used to.",
+      "kind": "score"
+    },
+    {
+      "id": "T10",
+      "axis": "t",
+      "reverse": true,
+      "ru": "Неожиданная смена моей роли надолго выбивает меня из равновесия.",
+      "en": "An unexpected change in my role throws me off balance for a long time.",
+      "kind": "score"
+    },
+    {
+      "id": "T11",
+      "axis": "t",
+      "reverse": true,
+      "ru": "Необходимость вести себя непривычно быстро истощает меня.",
+      "en": "Having to behave in an unfamiliar way exhausts me quickly.",
+      "kind": "score"
+    },
+    {
+      "id": "T12",
+      "axis": "t",
+      "reverse": true,
+      "ru": "Обычно существует один правильный способ организовать дело, и отступать от него не стоит.",
+      "en": "There is usually one correct way to organize something, and it is better not to deviate from it.",
+      "kind": "score"
+    },
+    {
+      "id": "K03",
+      "kind": "consistency",
+      "axis": "z",
+      "reverse": false,
+      "compareTo": "Z05",
+      "ru": "Я часто вижу связи между темами, которые другим кажутся не связанными.",
+      "en": "I often see connections between topics that other people consider unrelated."
+    },
+    {
+      "id": "C01",
+      "axis": "c",
+      "reverse": false,
+      "ru": "Когда я иду на компромисс, решение обычно остаётся моим собственным выбором.",
+      "en": "When I compromise, the decision usually still feels like my own choice.",
+      "kind": "score"
+    },
+    {
+      "id": "C02",
+      "axis": "c",
+      "reverse": false,
+      "ru": "Я могу отказать близкому человеку, если его просьба нарушает важную для меня границу.",
+      "en": "I can say no to a close person when a request crosses an important boundary of mine.",
+      "kind": "score"
+    },
+    {
+      "id": "C03",
+      "axis": "c",
+      "reverse": false,
+      "ru": "Я прямо говорю о своих потребностях, даже если они не совпадают с потребностями партнёра.",
+      "en": "I state my needs directly even when they differ from my partner’s needs.",
+      "kind": "score"
+    },
+    {
+      "id": "C04",
+      "axis": "c",
+      "reverse": false,
+      "ru": "После значимого компромисса у меня обычно не остаётся скрытой обиды.",
+      "en": "After a meaningful compromise, I usually do not retain hidden resentment.",
+      "kind": "score"
+    },
+    {
+      "id": "C05",
+      "axis": "c",
+      "reverse": false,
+      "ru": "Меняя поведение ради отношений, я всё равно ощущаю себя настоящим собой.",
+      "en": "When I change my behavior for a relationship, I still feel like my genuine self.",
+      "kind": "score"
+    },
+    {
+      "id": "C06",
+      "axis": "c",
+      "reverse": false,
+      "ru": "Близкий человек обычно знает мои настоящие взгляды, а не только удобную для него версию.",
+      "en": "A close person usually knows my real views, not only the version of me that is convenient for them.",
+      "kind": "score"
+    },
+    {
+      "id": "C07",
+      "axis": "c",
+      "reverse": false,
+      "ru": "После периода активной адаптации я могу спокойно вернуться к своему обычному состоянию.",
+      "en": "After a period of active adaptation, I can comfortably return to my usual state.",
+      "kind": "score"
+    },
+    {
+      "id": "C08",
+      "axis": "c",
+      "reverse": false,
+      "ru": "Я соглашаюсь меняться только тогда, когда это не противоречит моим ключевым ценностям.",
+      "en": "I agree to change only when it does not conflict with my core values.",
+      "kind": "score"
+    },
+    {
+      "id": "C09",
+      "axis": "c",
+      "reverse": true,
+      "ru": "Иногда я соглашаюсь на неудобные условия главным образом из страха потерять человека.",
+      "en": "Sometimes I accept uncomfortable conditions mainly because I am afraid of losing the person.",
+      "kind": "score"
+    },
+    {
+      "id": "C10",
+      "axis": "c",
+      "reverse": true,
+      "ru": "Я скрываю несогласие, чтобы сохранить впечатление идеальных отношений.",
+      "en": "I hide disagreement in order to preserve the appearance of an ideal relationship.",
+      "kind": "score"
+    },
+    {
+      "id": "C11",
+      "axis": "c",
+      "reverse": true,
+      "ru": "В близких отношениях мои собственные потребности легко отходят на второй план и перестают учитываться.",
+      "en": "In close relationships, my own needs easily move into the background and stop being considered.",
+      "kind": "score"
+    },
+    {
+      "id": "C12",
+      "axis": "c",
+      "reverse": true,
+      "ru": "После того как я уступаю, у меня нередко появляется ощущение, что мной воспользовались.",
+      "en": "After I give in, I often feel that I have been taken advantage of.",
+      "kind": "score"
+    },
+    {
+      "id": "K04",
+      "kind": "consistency",
+      "axis": "c",
+      "reverse": false,
+      "compareTo": "C02",
+      "ru": "Даже важному для меня человеку я могу отказать, если просьба нарушает мои границы.",
+      "en": "Even with someone important to me, I can refuse a request that crosses my boundaries."
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090d14" />
+  <meta name="description" content="Bilingual 5D personality profile and compatibility visualization template." />
+  <title>5D-профиль личности — тест и совместимость</title>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <link rel="stylesheet" href="./assets/css/main.css" />
+</head>
+<body>
+<header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <h1 data-i18n="brandTitle">5D-профиль личности</h1>
+        <p data-i18n="brandSubtitle">Тестирование, визуализация, обмен профилем и расчёт совместимости</p>
+      </div>
+      <div class="header-actions">
+        <div class="language-switch" aria-label="Language">
+          <button id="langRuBtn" class="lang-btn active" type="button">RU</button>
+          <button id="langEnBtn" class="lang-btn" type="button">EN</button>
+        </div>
+        <div id="headerStatus" class="status-pill">Профиль не определён</div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="top-nav" aria-label="Основная навигация">
+    <button class="nav-btn active" data-view-target="test" data-i18n="navTest">1. Тест</button>
+    <button class="nav-btn" data-view-target="profile" data-i18n="navProfile" disabled>2. Мой профиль</button>
+    <button class="nav-btn" data-view-target="compare" data-i18n="navCompare" disabled>3. Сравнение</button>
+  </nav>
+
+  <main>
+    <section id="view-test" class="view active">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="testTitle">Определение пяти параметров</h2>
+          <p data-i18n="testDescription">Ответьте на 52 утверждения по семибалльной шкале. 48 ответов формируют пять параметров, ещё 4 проверяют согласованность.</p>
+        </div>
+        <div class="button-row">
+          <button id="demoAnswersBtn" class="btn small" data-i18n="demoAnswers">Заполнить демо</button>
+          <button id="resetTestBtn" class="btn small danger" data-i18n="reset">Сбросить</button>
+        </div>
+      </div>
+
+      <div class="test-layout">
+        <article class="card test-card">
+          <div class="test-progress"><div id="testProgressBar"></div></div>
+          <div class="question-meta">
+            <span id="questionCounter">Вопрос 1 из 52</span>
+            <span id="questionAxis">Самооценка</span>
+          </div>
+
+          <h3 id="questionText" class="question-text"></h3>
+          <div id="questionHint" class="question-hint" data-i18n="questionHint">Оцените, насколько утверждение похоже на вас: 1 — совсем не похоже, 7 — полностью похоже.</div>
+
+          <div class="answer-scale">
+            <div class="scale-labels">
+              <span id="leftAnswerLabel"></span>
+              <span id="rightAnswerLabel"></span>
+            </div>
+            <div id="answerOptions" class="answer-options"></div>
+          </div>
+
+          <div class="test-actions">
+            <button id="prevQuestionBtn" class="btn" data-i18n="back">Назад</button>
+            <button id="nextQuestionBtn" class="btn primary" disabled>Далее</button>
+          </div>
+        </article>
+
+        <aside class="stack">
+          <div class="card">
+            <div class="card-title-row">
+              <h3 data-i18n="testStructure">Структура теста</h3>
+              <span id="questionCountBadge" class="status-pill">52 вопроса</span>
+            </div>
+            <div class="axis-preview-list">
+              <div class="axis-preview"><strong style="color:var(--x)" data-i18n="axisPreviewXTitle">X · Социальная направленность</strong><div data-i18n="axisPreviewXText">Интроверсия ↔ экстраверсия.</div></div>
+              <div class="axis-preview"><strong style="color:var(--y)" data-i18n="axisPreviewYTitle">Y · Эмоциональная регуляция</strong><div data-i18n="axisPreviewYText">Чувствительность ↔ стабильность.</div></div>
+              <div class="axis-preview"><strong style="color:var(--z)" data-i18n="axisPreviewZTitle">Z · Стратегия мышления</strong><div data-i18n="axisPreviewZText">Прагматизм ↔ абстрактность.</div></div>
+              <div class="axis-preview"><strong style="color:var(--t)" data-i18n="axisPreviewTTitle">T · Диапазон гибкости</strong><div data-i18n="axisPreviewTText">Ригидность ↔ ролевая пластичность.</div></div>
+              <div class="axis-preview"><strong style="color:var(--c)" data-i18n="axisPreviewCTitle">C · Аутентичность</strong><div data-i18n="axisPreviewCText">Самопредательство ↔ свободный выбор.</div></div>
+            </div>
+          </div>
+
+          <div class="notice" data-i18n="prototypeNotice">Это экспериментальная модель, а не диагностический психологический тест. Вопросы, веса и формулы требуют проверки на реальной выборке.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="view-profile" class="view">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="profileTitle">Ваш личный профиль</h2>
+          <p data-i18n="profileDescription">Координаты X/Y/Z задают центр профиля, T — полный диапазон адаптации, C — безопасную часть этого диапазона.</p>
+        </div>
+        <div class="button-row">
+          <button id="retakeTestBtn" class="btn" data-i18n="retakeTest">Пройти заново</button>
+          <button id="goCompareBtn" class="btn primary" data-i18n="compareProfile">Сравнить профиль</button>
+        </div>
+      </div>
+
+      <div class="profile-grid">
+        <div class="stack">
+          <div class="card">
+            <div class="card-title-row">
+              <h3 data-i18n="spatialModel">Пространственная модель</h3>
+              <div class="button-row">
+                <button class="btn small profile-view-btn" data-scene-view="iso">3D</button>
+                <button class="btn small profile-view-btn" data-scene-view="xy">XY</button>
+                <button class="btn small profile-view-btn" data-scene-view="xz">XZ</button>
+                <button class="btn small profile-view-btn" data-scene-view="yz">YZ</button>
+              </div>
+            </div>
+            <div class="scene-wrap">
+              <div id="profileScene" class="scene"></div>
+              <div class="scene-hud" data-i18n="profileSceneHud">ЛКМ — вращение · колесо — масштаб · ПКМ — перемещение. Пространство X/Y/Z ограничено от −50 до +50.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="recommendedPartner">Рекомендуемый диапазон партнёра</h3>
+            <div id="recommendedRanges" class="range-grid"></div>
+            <p class="caption" style="margin:12px 0 0;" data-i18n="recommendedCaption">Диапазоны пока основаны на текущей формуле: умеренное различие по X/Y, сходство по Z и положительные T/C.</p>
+          </div>
+        </div>
+
+        <div class="stack">
+          <div class="card">
+            <h3 data-i18n="finalParameters">Итоговые параметры</h3>
+            <div id="profileMetrics" class="metric-grid"></div>
+            <div id="profileScales" class="scale-stack" style="margin-top:15px;"></div>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="textSummary">Текстовая сводка</h3>
+            <div id="profileSummary" class="stack" style="gap:9px;"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title-row">
+              <h3 data-i18n="qrTitle">QR-код профиля</h3>
+              <button id="copyProfileCodeBtn" class="btn small" data-i18n="copyCode">Копировать код</button>
+            </div>
+            <div class="qr-grid">
+              <div id="myQrCode" class="qr-box"></div>
+              <div>
+                <textarea id="myProfileCode" class="code-box" readonly></textarea>
+                <p class="caption" data-i18n="qrCaption">Код содержит только версию формата и пять итоговых координат. Имя и ответы теста в QR не включаются.</p>
+              </div>
+            </div>
+          </div>
+
+          <details>
+            <summary data-i18n="manualEditSummary">Временно изменить параметры вручную</summary>
+            <div class="details-body">
+              <div id="manualProfileEditor" class="manual-grid"></div>
+              <div class="button-row" style="margin-top:12px;">
+                <button id="saveManualProfileBtn" class="btn primary" data-i18n="saveParameters">Сохранить параметры</button>
+                <button id="restoreTestProfileBtn" class="btn" data-i18n="restoreTestProfile">Вернуть результат теста</button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-compare" class="view">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="compareTitle">Сравнение двух профилей</h2>
+          <p data-i18n="compareDescription">Вставьте текстовый код, загрузите изображение QR или отсканируйте код камерой. После импорта появятся график и полный расчёт пары.</p>
+        </div>
+      </div>
+
+      <div class="compare-input-grid">
+        <div class="card">
+          <h3 data-i18n="yourProfile">Ваш профиль</h3>
+          <div id="ownProfileMini" class="profile-mini"></div>
+          <textarea id="ownCodeCompare" class="code-box" readonly style="margin-top:12px;"></textarea>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="partnerProfile">Профиль второго человека</h3>
+          <textarea id="partnerCodeInput" class="code-box" data-i18n-placeholder="partnerPlaceholder" placeholder="P5D1|20|-15|30|25|-10 или пять чисел через запятую"></textarea>
+          <div class="button-row" style="margin-top:10px;">
+            <button id="applyPartnerCodeBtn" class="btn primary" data-i18n="applyCode">Применить код</button>
+            <button id="startQrScannerBtn" class="btn" data-i18n="scanCamera">Сканировать камерой</button>
+            <button id="uploadQrBtn" class="btn" data-i18n="uploadQr">Загрузить QR</button>
+            <input id="qrFileInput" type="file" accept="image/*" hidden />
+          </div>
+          <div id="scannerShell" class="scanner-shell">
+            <div id="qrReader"></div>
+            <button id="stopQrScannerBtn" class="btn danger" style="width:100%; margin-top:8px;" data-i18n="stopCamera">Остановить камеру</button>
+          </div>
+          <div id="partnerImportStatus" class="caption" style="margin-top:10px;" data-i18n="partnerMissing">Профиль ещё не добавлен.</div>
+        </div>
+      </div>
+
+      <div id="comparisonResults" class="comparison-results">
+        <div class="profile-grid">
+          <div class="stack">
+            <div class="card">
+              <div class="card-title-row">
+                <h3 data-i18n="combinedModel">Общая пространственная модель</h3>
+                <div class="button-row">
+                  <button class="btn small compare-view-btn" data-scene-view="iso">3D</button>
+                  <button class="btn small compare-view-btn" data-scene-view="xy">XY</button>
+                  <button class="btn small compare-view-btn" data-scene-view="xz">XZ</button>
+                  <button class="btn small compare-view-btn" data-scene-view="yz">YZ</button>
+                </div>
+              </div>
+              <div class="scene-wrap">
+                <div id="compareScene" class="scene"></div>
+                <div class="scene-hud" data-i18n="compareSceneHud">Линия соединяет базовые центры. Внешние сферы — полный диапазон адаптации, внутренние — безопасный.</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 data-i18n="hiddenProperties">Скрытые свойства пары</h3>
+              <div id="diagnosticsList" class="diagnostic-list"></div>
+            </div>
+          </div>
+
+          <div class="stack">
+            <div class="card">
+              <h3 data-i18n="comparisonResult">Итог сравнения</h3>
+              <div id="analysisMetrics" class="analysis-grid"></div>
+              <div class="difficulty-row" style="margin-top:10px;">
+                <div>
+                  <div class="caption" data-i18n="calculatedDifficulty">Расчётная сложность</div>
+                  <strong id="difficultyValue">—</strong>
+                </div>
+                <span id="difficultyBadge" class="difficulty-badge medium">MEDIUM</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 data-i18n="partnerProfile">Профиль второго человека</h3>
+              <div id="partnerScales" class="scale-stack"></div>
+              <div id="partnerSummary" class="stack" style="gap:9px; margin-top:14px;"></div>
+            </div>
+
+            <div class="card">
+              <h3 data-i18n="resourceAndTerm">Ресурс и условный срок</h3>
+              <div class="manual-grid">
+                <label class="caption"><span data-i18n="resourceLabel">Внутренний ресурс R</span><input id="resourceInput" class="input" type="number" min="1" max="10000" step="1" value="100" /></label>
+                <label class="caption"><span data-i18n="stressLabel">Внешняя нагрузка S</span><input id="stressInput" class="input" type="number" min="0.1" max="10" step="0.1" value="1" /></label>
+              </div>
+              <div id="shelfLifeSummary" class="summary-block" style="margin-top:11px;"></div>
+            </div>
+
+            <details>
+              <summary data-i18n="showFormulas">Показать формулы прототипа</summary>
+              <div class="details-body">
+                <div class="formula-box">
+                  B = (Sx + Sy + Sz) / 3<br />
+                  Sx = clamp(1 − |ΔX − 20| / 80)<br />
+                  Sy = clamp(1 − |ΔY − 20| / 80)<br />
+                  Sz = clamp(1 − ΔZ / 100)<br /><br />
+                  KT = ((T₁ + 50) + (T₂ + 50)) / 200<br />
+                  KC = ((C₁ + 50)(C₂ + 50)) / 10000<br />
+                  K = B × KT × KC<br /><br />
+                  Time = R / (ΔBasis × |C₋| × S)
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>
