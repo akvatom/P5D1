@@ -1,8 +1,8 @@
 {
-  "version": "P5D-questions-v2-binary",
+  "version": "P5D-questions-v2.1-clear-binary",
   "instructions": {
-    "ru": "Отвечайте о своём обычном поведении за последние 12 месяцев, а не об одном недавнем эпизоде. Выберите «Не могу оценить», если у вас не было подходящей ситуации.",
-    "en": "Answer about your usual behavior over the last 12 months, not one recent episode. Choose “Cannot assess” when you have not encountered a suitable situation."
+    "ru": "Отвечайте о своём обычном поведении за последние 12 месяцев. Выберите «Да», если утверждение обычно верно для вас в большинстве подходящих ситуаций. Выберите «Нет», если оно обычно неверно. Выберите «Не могу оценить», если таких ситуаций не было или данных недостаточно.",
+    "en": "Answer about your usual behavior over the last 12 months. Choose “Yes” when the statement is usually true for you in most relevant situations. Choose “No” when it is usually not true. Choose “Cannot assess” when you have not encountered enough relevant situations."
   },
   "scale": {
     "type": "binary_with_unknown",
@@ -162,8 +162,8 @@
       "subscale": "initiative",
       "reverse": false,
       "kind": "score",
-      "ru": "В незнакомой обстановке я могу первым обратиться к человеку.",
-      "en": "In an unfamiliar setting, I can be the first to approach someone."
+      "ru": "В незнакомом месте я могу первым начать разговор с человеком.",
+      "en": "In an unfamiliar place, I can be the first to start a conversation with someone."
     },
     {
       "id": "Y01",
@@ -171,8 +171,8 @@
       "subscale": "reactivity",
       "reverse": true,
       "kind": "score",
-      "ru": "Неожиданная неприятность быстро вызывает у меня сильную эмоциональную реакцию.",
-      "en": "An unexpected setback quickly triggers a strong emotional reaction in me."
+      "ru": "Когда неожиданно происходит что-то неприятное, мои эмоции обычно резко усиливаются.",
+      "en": "When something unpleasant happens unexpectedly, my emotions usually become intense very quickly."
     },
     {
       "id": "Z01",
@@ -180,8 +180,8 @@
       "subscale": "abstraction",
       "reverse": false,
       "kind": "score",
-      "ru": "Мне интересно обсуждать общий принцип, даже если нет конкретного примера.",
-      "en": "I enjoy discussing a general principle even when there is no concrete example."
+      "ru": "Мне интересно обсуждать, как что-либо устроено в целом, даже без разбора конкретного случая.",
+      "en": "I enjoy discussing how something works in general, even without examining a specific case."
     },
     {
       "id": "T01",
@@ -189,8 +189,8 @@
       "subscale": "role_switching",
       "reverse": false,
       "kind": "score",
-      "ru": "В совместной работе я могу без сильного дискомфорта перейти от ведущей роли к поддерживающей.",
-      "en": "In collaborative work, I can move from a leading role to a supporting one without strong discomfort."
+      "ru": "В общей работе я могу спокойно перестать руководить и перейти к роли помощника.",
+      "en": "When working with others, I can comfortably stop leading and move into a supporting role."
     },
     {
       "id": "C01",
@@ -198,8 +198,8 @@
       "subscale": "boundary_awareness",
       "reverse": false,
       "kind": "score",
-      "ru": "Я обычно замечаю, когда согласие начинает противоречить моим важным потребностям.",
-      "en": "I usually notice when agreement begins to conflict with my important needs."
+      "ru": "Я обычно замечаю, когда соглашаюсь на то, что для меня действительно неприемлемо.",
+      "en": "I usually notice when I am agreeing to something that is genuinely unacceptable to me."
     },
     {
       "id": "X02",
@@ -207,8 +207,8 @@
       "subscale": "initiative",
       "reverse": false,
       "kind": "score",
-      "ru": "Когда группе нужен доброволец, я нередко предлагаю себя.",
-      "en": "When a group needs a volunteer, I often offer myself."
+      "ru": "Если в группе нужен доброволец, я нередко вызываюсь сам.",
+      "en": "When a group needs a volunteer, I often offer to do it."
     },
     {
       "id": "Y02",
@@ -216,8 +216,8 @@
       "subscale": "reactivity",
       "reverse": false,
       "kind": "score",
-      "ru": "Под давлением я обычно сохраняю достаточно спокойствия, чтобы принимать решения.",
-      "en": "Under pressure, I usually remain calm enough to make decisions."
+      "ru": "Даже под давлением я обычно могу спокойно решить, что делать.",
+      "en": "Even under pressure, I can usually decide what to do calmly."
     },
     {
       "id": "Z02",
@@ -225,8 +225,8 @@
       "subscale": "abstraction",
       "reverse": true,
       "kind": "score",
-      "ru": "Новую идею мне легче понять через конкретный пример, чем через теорию.",
-      "en": "I understand a new idea more easily through a concrete example than through theory."
+      "ru": "Новую идею мне легче понять на конкретном примере, чем из общего объяснения.",
+      "en": "I understand a new idea more easily through a concrete example than through a general explanation."
     },
     {
       "id": "T02",
@@ -234,8 +234,8 @@
       "subscale": "role_switching",
       "reverse": true,
       "kind": "score",
-      "ru": "Мне трудно отказаться от привычной роли, даже когда ситуация требует другого поведения.",
-      "en": "It is hard for me to leave my familiar role even when the situation calls for different behavior."
+      "ru": "Мне трудно сменить привычную роль, даже когда от меня требуется другое поведение.",
+      "en": "It is hard for me to change my usual role even when the situation requires different behavior."
     },
     {
       "id": "CX01",
@@ -244,7 +244,7 @@
       "reverse": false,
       "kind": "consistency",
       "compareTo": "X01",
-      "ru": "На мероприятии, где я никого не знаю, я могу первым заговорить с кем-то.",
+      "ru": "Если на мероприятии я никого не знаю, я могу первым заговорить с кем-нибудь.",
       "en": "At an event where I know no one, I can be the first to speak to someone."
     },
     {
@@ -253,8 +253,8 @@
       "subscale": "boundary_awareness",
       "reverse": true,
       "kind": "score",
-      "ru": "Я часто соглашаюсь автоматически и только позже понимаю, что мне было некомфортно.",
-      "en": "I often agree automatically and only later realize that I was uncomfortable."
+      "ru": "Я часто сразу соглашаюсь, а позже понимаю, что на самом деле мне было некомфортно.",
+      "en": "I often agree right away and only later realize that I was actually uncomfortable."
     },
     {
       "id": "X03",
@@ -262,7 +262,7 @@
       "subscale": "initiative",
       "reverse": true,
       "kind": "score",
-      "ru": "Даже имея что сказать, я обычно жду, пока разговор начнёт кто-то другой.",
+      "ru": "Даже когда мне есть что сказать, я обычно жду, пока разговор начнёт кто-то другой.",
       "en": "Even when I have something to say, I usually wait for someone else to start the conversation."
     },
     {
@@ -271,8 +271,8 @@
       "subscale": "reactivity",
       "reverse": true,
       "kind": "score",
-      "ru": "Резкая критика способна надолго выбить меня из равновесия.",
-      "en": "Harsh criticism can throw me off balance for a long time."
+      "ru": "После резкой критики мне долго трудно успокоиться.",
+      "en": "After harsh criticism, it takes me a long time to calm down."
     },
     {
       "id": "Z03",
@@ -280,8 +280,8 @@
       "subscale": "abstraction",
       "reverse": false,
       "kind": "score",
-      "ru": "Я часто замечаю общие закономерности между разными темами.",
-      "en": "I often notice common patterns across different topics."
+      "ru": "Я часто замечаю, что разные ситуации развиваются похожим образом.",
+      "en": "I often notice that different situations develop in similar ways."
     },
     {
       "id": "T03",
@@ -289,8 +289,8 @@
       "subscale": "role_switching",
       "reverse": false,
       "kind": "score",
-      "ru": "Я могу менять стиль общения в разных условиях, не ощущая, что притворяюсь.",
-      "en": "I can adjust my communication style across situations without feeling that I am pretending."
+      "ru": "В разных ситуациях я могу общаться по-разному и при этом оставаться собой.",
+      "en": "I can communicate differently in different situations while still feeling like myself."
     },
     {
       "id": "C03",
@@ -298,8 +298,8 @@
       "subscale": "boundary_awareness",
       "reverse": false,
       "kind": "score",
-      "ru": "Я могу отличить добровольную помощь от уступки под давлением.",
-      "en": "I can distinguish voluntary help from giving in under pressure."
+      "ru": "Я понимаю разницу между помощью по собственному желанию и согласием из-за давления.",
+      "en": "I can tell the difference between helping by choice and agreeing because of pressure."
     },
     {
       "id": "X04",
@@ -307,8 +307,8 @@
       "subscale": "initiative",
       "reverse": true,
       "kind": "score",
-      "ru": "Я стараюсь не привлекать к себе внимание, даже когда от меня ожидают инициативы.",
-      "en": "I try not to draw attention to myself even when initiative is expected from me."
+      "ru": "Я стараюсь оставаться незаметным, даже когда от меня ждут инициативы.",
+      "en": "I try to stay unnoticed even when people expect me to take initiative."
     },
     {
       "id": "Y04",
@@ -316,8 +316,8 @@
       "subscale": "reactivity",
       "reverse": false,
       "kind": "score",
-      "ru": "Небольшая неудача редко определяет моё настроение на весь день.",
-      "en": "A small setback rarely determines my mood for the whole day."
+      "ru": "Небольшая неудача обычно не портит мне настроение на весь день.",
+      "en": "A small setback usually does not ruin my mood for the whole day."
     },
     {
       "id": "Z04",
@@ -325,8 +325,8 @@
       "subscale": "abstraction",
       "reverse": true,
       "kind": "score",
-      "ru": "Абстрактное объяснение быстро утомляет меня, если не видно практического применения.",
-      "en": "An abstract explanation quickly tires me when no practical use is visible."
+      "ru": "Мне быстро становится скучно от объяснения, если я не понимаю, где его можно применить.",
+      "en": "I quickly lose interest in an explanation when I cannot see where it can be used."
     },
     {
       "id": "CX02",
@@ -335,8 +335,8 @@
       "reverse": true,
       "kind": "consistency",
       "compareTo": "X10",
-      "ru": "Небольшой круг знакомых обычно устраивает меня больше, чем множество контактов.",
-      "en": "A small circle of familiar people usually suits me better than many contacts."
+      "ru": "Мне обычно комфортнее иметь небольшой постоянный круг знакомых, чем много разных контактов.",
+      "en": "I usually feel more comfortable with a small steady circle of acquaintances than with many different contacts."
     },
     {
       "id": "T04",
@@ -344,8 +344,8 @@
       "subscale": "plan_adjustment",
       "reverse": false,
       "kind": "score",
-      "ru": "Неожиданное изменение планов обычно не мешает мне перестроиться.",
-      "en": "An unexpected change of plans usually does not prevent me from adapting."
+      "ru": "Если планы неожиданно меняются, я обычно быстро приспосабливаюсь.",
+      "en": "When plans change unexpectedly, I usually adapt quickly."
     },
     {
       "id": "C04",
@@ -353,8 +353,8 @@
       "subscale": "boundary_awareness",
       "reverse": true,
       "kind": "score",
-      "ru": "Я игнорирую собственную усталость, когда окружающие рассчитывают на меня.",
-      "en": "I ignore my own exhaustion when others are counting on me."
+      "ru": "Я продолжаю помогать другим, даже когда понимаю, что сам уже сильно устал.",
+      "en": "I keep helping others even when I realize that I am already very tired."
     },
     {
       "id": "X05",
@@ -362,8 +362,8 @@
       "subscale": "social_energy",
       "reverse": false,
       "kind": "score",
-      "ru": "После живого общения я чаще чувствую прилив энергии.",
-      "en": "After lively interaction, I usually feel more energized."
+      "ru": "После активного общения я обычно чувствую больше энергии.",
+      "en": "After active social interaction, I usually feel more energized."
     },
     {
       "id": "Y05",
@@ -371,8 +371,8 @@
       "subscale": "recovery",
       "reverse": false,
       "kind": "score",
-      "ru": "После неприятного события я сравнительно быстро возвращаюсь в обычное состояние.",
-      "en": "After an unpleasant event, I return to my usual state relatively quickly."
+      "ru": "После неприятного события я обычно довольно быстро возвращаюсь в обычное состояние.",
+      "en": "After an unpleasant event, I usually return to my normal state fairly quickly."
     },
     {
       "id": "Z05",
@@ -380,8 +380,8 @@
       "subscale": "theory_practice",
       "reverse": false,
       "kind": "score",
-      "ru": "Мне важно понимать, почему система работает, даже если я уже знаю, как ею пользоваться.",
-      "en": "It matters to me to understand why a system works even when I already know how to use it."
+      "ru": "Даже если я умею чем-то пользоваться, мне интересно понять, почему это работает.",
+      "en": "Even when I know how to use something, I am interested in understanding why it works."
     },
     {
       "id": "T05",
@@ -389,8 +389,8 @@
       "subscale": "plan_adjustment",
       "reverse": true,
       "kind": "score",
-      "ru": "Мне требуется много времени, чтобы принять уже изменившиеся обстоятельства.",
-      "en": "I need a long time to accept circumstances that have already changed."
+      "ru": "Мне нужно много времени, чтобы привыкнуть к обстоятельствам, которые уже изменились.",
+      "en": "I need a long time to adjust to circumstances that have already changed."
     },
     {
       "id": "C05",
@@ -398,8 +398,8 @@
       "subscale": "direct_expression",
       "reverse": false,
       "kind": "score",
-      "ru": "Я способен спокойно обозначить несогласие до того, как накопится раздражение.",
-      "en": "I can calmly express disagreement before irritation builds up."
+      "ru": "Я могу спокойно сказать, что не согласен, до того как начну раздражаться.",
+      "en": "I can calmly say that I disagree before I become irritated."
     },
     {
       "id": "X06",
@@ -407,8 +407,8 @@
       "subscale": "social_energy",
       "reverse": true,
       "kind": "score",
-      "ru": "После нескольких часов общения мне требуется продолжительное время в тишине.",
-      "en": "After several hours of interaction, I need an extended period of quiet."
+      "ru": "После нескольких часов общения мне обычно нужно долго побыть в тишине.",
+      "en": "After several hours of social interaction, I usually need a long period of quiet."
     },
     {
       "id": "Y06",
@@ -416,8 +416,8 @@
       "subscale": "recovery",
       "reverse": true,
       "kind": "score",
-      "ru": "Даже когда ситуация уже закончилась, внутреннее напряжение ещё долго сохраняется.",
-      "en": "Even after a situation is over, the inner tension remains for a long time."
+      "ru": "Даже после окончания неприятной ситуации я ещё долго чувствую напряжение.",
+      "en": "Even after an unpleasant situation has ended, I continue to feel tense for a long time."
     },
     {
       "id": "CY01",
@@ -426,8 +426,8 @@
       "reverse": false,
       "kind": "consistency",
       "compareTo": "Y05",
-      "ru": "Когда проблема заканчивается, мой эмоциональный фон обычно довольно быстро выравнивается.",
-      "en": "When a problem ends, my emotional state usually settles fairly quickly."
+      "ru": "Когда проблема заканчивается, моё эмоциональное состояние обычно быстро приходит в норму.",
+      "en": "When a problem ends, my emotional state usually returns to normal quickly."
     },
     {
       "id": "Z06",
@@ -435,8 +435,8 @@
       "subscale": "theory_practice",
       "reverse": true,
       "kind": "score",
-      "ru": "Я предпочитаю проверенный способ интересной, но непроверенной идее.",
-      "en": "I prefer a proven method to an interesting but untested idea."
+      "ru": "Я скорее выберу проверенный способ, чем интересную идею, которую ещё никто не проверил.",
+      "en": "I am more likely to choose a proven method than an interesting idea that has not yet been tested."
     },
     {
       "id": "T06",
@@ -444,7 +444,7 @@
       "subscale": "plan_adjustment",
       "reverse": false,
       "kind": "score",
-      "ru": "При необходимости я могу быстро по-новому организовать свой день.",
+      "ru": "При необходимости я могу быстро перестроить свой день.",
       "en": "When necessary, I can quickly reorganize my day."
     },
     {
@@ -453,8 +453,8 @@
       "subscale": "direct_expression",
       "reverse": true,
       "kind": "score",
-      "ru": "Я скрываю возражение, чтобы не создавать напряжение.",
-      "en": "I hide my objection in order to avoid tension."
+      "ru": "Я часто не говорю о своём несогласии, чтобы не создавать напряжение.",
+      "en": "I often do not express my disagreement because I want to avoid tension."
     },
     {
       "id": "X07",
@@ -462,8 +462,8 @@
       "subscale": "social_energy",
       "reverse": true,
       "kind": "score",
-      "ru": "День с большим количеством контактов обычно заметно меня истощает.",
-      "en": "A day with many social contacts usually drains me noticeably."
+      "ru": "День с большим количеством общения обычно сильно меня утомляет.",
+      "en": "A day with a lot of social interaction usually tires me greatly."
     },
     {
       "id": "Y07",
@@ -471,8 +471,8 @@
       "subscale": "recovery",
       "reverse": false,
       "kind": "score",
-      "ru": "Обычного отдыха мне чаще хватает, чтобы восстановиться после напряжённого дня.",
-      "en": "Ordinary rest is usually enough for me to recover after a stressful day."
+      "ru": "Обычного отдыха мне обычно хватает, чтобы восстановиться после напряжённого дня.",
+      "en": "Normal rest is usually enough for me to recover after a stressful day."
     },
     {
       "id": "Z07",
@@ -480,8 +480,8 @@
       "subscale": "theory_practice",
       "reverse": false,
       "kind": "score",
-      "ru": "Мне нравится рассматривать гипотетические сценарии и их последствия.",
-      "en": "I enjoy considering hypothetical scenarios and their consequences."
+      "ru": "Мне нравится размышлять о том, что могло бы произойти при других условиях.",
+      "en": "I enjoy thinking about what might happen under different conditions."
     },
     {
       "id": "T07",
@@ -489,8 +489,8 @@
       "subscale": "strategy_switching",
       "reverse": false,
       "kind": "score",
-      "ru": "Если выбранный способ не работает, я охотно пробую другой.",
-      "en": "If the chosen approach does not work, I readily try another."
+      "ru": "Если один способ не работает, я без долгих сомнений пробую другой.",
+      "en": "If one approach does not work, I try another without much hesitation."
     },
     {
       "id": "C07",
@@ -498,7 +498,7 @@
       "subscale": "direct_expression",
       "reverse": false,
       "kind": "score",
-      "ru": "Когда мне что-то действительно нужно, я могу попросить об этом прямо.",
+      "ru": "Когда мне что-то действительно нужно, я могу прямо об этом попросить.",
       "en": "When I genuinely need something, I can ask for it directly."
     },
     {
@@ -507,8 +507,8 @@
       "subscale": "social_energy",
       "reverse": false,
       "kind": "score",
-      "ru": "Если я долго нахожусь один, у меня появляется желание выйти к людям.",
-      "en": "If I spend a long time alone, I start wanting to be around people."
+      "ru": "Если я долго нахожусь один, мне обычно начинает хотеться общения.",
+      "en": "If I spend a long time alone, I usually start wanting social interaction."
     },
     {
       "id": "CY02",
@@ -517,8 +517,8 @@
       "reverse": true,
       "kind": "consistency",
       "compareTo": "Y09",
-      "ru": "Я часто мысленно переписываю уже состоявшиеся разговоры.",
-      "en": "I often mentally rewrite conversations that have already happened."
+      "ru": "Я часто мысленно возвращаюсь к прошедшим разговорам и представляю, что мог сказать иначе.",
+      "en": "I often return to past conversations in my mind and imagine what I could have said differently."
     },
     {
       "id": "Y08",
@@ -526,8 +526,8 @@
       "subscale": "recovery",
       "reverse": true,
       "kind": "score",
-      "ru": "После сильного переживания мне трудно вернуться к привычному ритму.",
-      "en": "After an intense emotional experience, it is hard for me to return to my normal rhythm."
+      "ru": "После сильных эмоций мне трудно вернуться к обычному ритму.",
+      "en": "After intense emotions, it is hard for me to return to my normal rhythm."
     },
     {
       "id": "Z08",
@@ -535,8 +535,8 @@
       "subscale": "theory_practice",
       "reverse": true,
       "kind": "score",
-      "ru": "Знание кажется мне ценнее, когда его можно применить сразу.",
-      "en": "Knowledge seems more valuable to me when it can be applied immediately."
+      "ru": "Знание кажется мне особенно ценным, если его можно сразу использовать на практике.",
+      "en": "Knowledge feels especially valuable to me when it can be used in practice right away."
     },
     {
       "id": "T08",
@@ -544,8 +544,8 @@
       "subscale": "strategy_switching",
       "reverse": true,
       "kind": "score",
-      "ru": "Я продолжаю придерживаться выбранного способа, даже когда его эффективность вызывает сомнения.",
-      "en": "I keep using a chosen approach even when its effectiveness is doubtful."
+      "ru": "Я продолжаю действовать привычным способом, даже когда уже сомневаюсь, что он работает.",
+      "en": "I keep using my usual approach even when I already doubt that it works."
     },
     {
       "id": "C08",
@@ -553,8 +553,8 @@
       "subscale": "direct_expression",
       "reverse": true,
       "kind": "score",
-      "ru": "Я ожидаю, что окружающие сами заметят мой дискомфорт, даже если я о нём не говорю.",
-      "en": "I expect others to notice my discomfort even when I do not mention it."
+      "ru": "Я часто жду, что окружающие сами заметят мой дискомфорт, хотя я о нём не говорю.",
+      "en": "I often expect others to notice my discomfort even though I do not mention it."
     },
     {
       "id": "X09",
@@ -562,8 +562,8 @@
       "subscale": "social_breadth",
       "reverse": false,
       "kind": "score",
-      "ru": "Мне нравится поддерживать широкий круг знакомых.",
-      "en": "I enjoy maintaining a wide circle of acquaintances."
+      "ru": "Мне нравится поддерживать общение со многими знакомыми.",
+      "en": "I enjoy staying in touch with many acquaintances."
     },
     {
       "id": "Y09",
@@ -571,8 +571,8 @@
       "subscale": "rumination",
       "reverse": true,
       "kind": "score",
-      "ru": "Я многократно прокручиваю прошедшие разговоры и придумываю другие варианты ответа.",
-      "en": "I repeatedly replay past conversations and imagine different responses."
+      "ru": "Я много раз прокручиваю прошедшие разговоры и придумываю, как мог бы ответить иначе.",
+      "en": "I replay past conversations many times and imagine how I could have responded differently."
     },
     {
       "id": "Z09",
@@ -580,8 +580,8 @@
       "subscale": "ambiguity",
       "reverse": false,
       "kind": "score",
-      "ru": "Я могу некоторое время удерживать несколько возможных объяснений одновременно.",
-      "en": "I can keep several possible explanations open at the same time for a while."
+      "ru": "Я могу не спешить с выводом и некоторое время рассматривать несколько объяснений.",
+      "en": "I can avoid rushing to a conclusion and consider several explanations for a while."
     },
     {
       "id": "T09",
@@ -589,8 +589,8 @@
       "subscale": "strategy_switching",
       "reverse": false,
       "kind": "score",
-      "ru": "Я способен отказаться от плана, в который уже вложил много сил, если условия изменились.",
-      "en": "I can abandon a plan I have invested heavily in when the conditions change."
+      "ru": "Если условия изменились, я могу отказаться от плана, даже если уже вложил в него много сил.",
+      "en": "When conditions change, I can give up a plan even after investing a lot of effort in it."
     },
     {
       "id": "C09",
@@ -598,8 +598,8 @@
       "subscale": "autonomous_choice",
       "reverse": false,
       "kind": "score",
-      "ru": "Изменив своё поведение ради общей задачи, я могу объяснить себе, почему сам это выбрал.",
-      "en": "When I change my behavior for a shared task, I can explain to myself why I chose to do so."
+      "ru": "Если я меняю своё поведение ради общего дела, я обычно понимаю, почему сам на это согласился.",
+      "en": "When I change my behavior for a shared task, I usually understand why I chose to do so."
     },
     {
       "id": "CZ01",
@@ -608,8 +608,8 @@
       "reverse": false,
       "kind": "consistency",
       "compareTo": "Z03",
-      "ru": "Я естественно замечаю похожие закономерности в разных областях.",
-      "en": "I naturally notice similar patterns in different areas."
+      "ru": "Я часто замечаю одинаковые закономерности в совершенно разных областях.",
+      "en": "I often notice the same kinds of patterns in completely different areas."
     },
     {
       "id": "X10",
@@ -617,8 +617,8 @@
       "subscale": "social_breadth",
       "reverse": true,
       "kind": "score",
-      "ru": "Мне достаточно нескольких постоянных контактов, и расширять круг обычно не хочется.",
-      "en": "A few steady contacts are enough for me, and I usually do not want to expand my circle."
+      "ru": "Мне обычно хватает нескольких постоянных знакомых, и расширять круг общения не хочется.",
+      "en": "A few steady acquaintances are usually enough for me, and I do not feel like expanding my social circle."
     },
     {
       "id": "Y10",
@@ -626,8 +626,8 @@
       "subscale": "rumination",
       "reverse": false,
       "kind": "score",
-      "ru": "Когда вывод уже сделан, я обычно могу перестать возвращаться к ситуации мысленно.",
-      "en": "Once I have reached a conclusion, I can usually stop returning to the situation mentally."
+      "ru": "Если я уже понял, что произошло, я обычно могу перестать мысленно возвращаться к этому.",
+      "en": "Once I understand what happened, I can usually stop returning to it in my mind."
     },
     {
       "id": "Z10",
@@ -635,8 +635,8 @@
       "subscale": "ambiguity",
       "reverse": true,
       "kind": "score",
-      "ru": "Мне хочется как можно быстрее выбрать один однозначный ответ.",
-      "en": "I want to choose one clear answer as quickly as possible."
+      "ru": "Мне трудно долго рассматривать разные варианты: хочется быстрее выбрать один ответ.",
+      "en": "I find it hard to consider several possibilities for long and want to choose one answer quickly."
     },
     {
       "id": "T10",
@@ -644,8 +644,8 @@
       "subscale": "perspective_shift",
       "reverse": false,
       "kind": "score",
-      "ru": "Я могу временно рассуждать с позиции, с которой сам не согласен.",
-      "en": "I can temporarily reason from a position that I do not personally agree with."
+      "ru": "Я могу попробовать рассуждать с чужой точки зрения, даже если с ней не согласен.",
+      "en": "I can try to reason from another person's point of view even when I disagree with it."
     },
     {
       "id": "C10",
@@ -653,8 +653,8 @@
       "subscale": "autonomous_choice",
       "reverse": true,
       "kind": "score",
-      "ru": "Я часто подстраиваюсь, чтобы никого не разочаровать, даже когда это идёт против моих интересов.",
-      "en": "I often adapt so that I do not disappoint anyone, even when it goes against my interests."
+      "ru": "Я часто подстраиваюсь, чтобы никого не разочаровать, даже если мне самому это не подходит.",
+      "en": "I often adapt so that I do not disappoint anyone, even when the choice does not suit me."
     },
     {
       "id": "X11",
@@ -662,8 +662,8 @@
       "subscale": "social_breadth",
       "reverse": false,
       "kind": "score",
-      "ru": "Я охотно знакомлюсь с новыми людьми без особой необходимости.",
-      "en": "I readily meet new people even when there is no particular need."
+      "ru": "Я охотно знакомлюсь с новыми людьми, даже когда в этом нет необходимости.",
+      "en": "I readily meet new people even when there is no practical need to do so."
     },
     {
       "id": "Y11",
@@ -671,8 +671,8 @@
       "subscale": "rumination",
       "reverse": true,
       "kind": "score",
-      "ru": "Одна неприятная мысль может возвращаться ко мне много раз в течение дня.",
-      "en": "One unpleasant thought can return to me many times during the day."
+      "ru": "Одна неприятная мысль может возвращаться ко мне много раз за день.",
+      "en": "A single unpleasant thought can return to me many times during the day."
     },
     {
       "id": "Z11",
@@ -680,8 +680,8 @@
       "subscale": "ambiguity",
       "reverse": false,
       "kind": "score",
-      "ru": "Противоречивая информация чаще вызывает у меня любопытство, чем раздражение.",
-      "en": "Contradictory information is more likely to make me curious than irritated."
+      "ru": "Если информация противоречива, мне обычно хочется разобраться, а не поскорее закрыть вопрос.",
+      "en": "When information is contradictory, I usually want to understand it rather than close the issue quickly."
     },
     {
       "id": "T11",
@@ -689,8 +689,8 @@
       "subscale": "perspective_shift",
       "reverse": true,
       "kind": "score",
-      "ru": "Мне трудно понять логику человека, чьи исходные убеждения сильно отличаются от моих.",
-      "en": "It is hard for me to understand the logic of someone whose starting beliefs differ greatly from mine."
+      "ru": "Мне трудно понять ход мыслей человека, который смотрит на мир совсем иначе.",
+      "en": "It is hard for me to understand the reasoning of someone who sees the world very differently."
     },
     {
       "id": "CZ02",
@@ -699,8 +699,8 @@
       "reverse": true,
       "kind": "consistency",
       "compareTo": "Z08",
-      "ru": "Практическая польза знания для меня обычно важнее его теоретической красоты.",
-      "en": "The practical usefulness of knowledge is usually more important to me than its theoretical elegance."
+      "ru": "Для меня практическая польза знания обычно важнее того, насколько интересна сама теория.",
+      "en": "For me, the practical usefulness of knowledge is usually more important than how interesting the theory itself is."
     },
     {
       "id": "C11",
@@ -708,8 +708,8 @@
       "subscale": "autonomous_choice",
       "reverse": false,
       "kind": "score",
-      "ru": "Я могу отказаться от просьбы без продолжительного чувства вины.",
-      "en": "I can decline a request without prolonged guilt."
+      "ru": "Я могу отказать в просьбе и потом долго не винить себя за это.",
+      "en": "I can decline a request without feeling guilty about it for a long time."
     },
     {
       "id": "X12",
@@ -717,8 +717,8 @@
       "subscale": "social_breadth",
       "reverse": true,
       "kind": "score",
-      "ru": "Я редко поддерживаю знакомство, если нас больше не связывает общее дело.",
-      "en": "I rarely maintain an acquaintance once we no longer share a common activity."
+      "ru": "Если общее дело заканчивается, я редко продолжаю поддерживать знакомство.",
+      "en": "When a shared activity ends, I rarely continue maintaining the acquaintance."
     },
     {
       "id": "Y12",
@@ -726,8 +726,8 @@
       "subscale": "rumination",
       "reverse": false,
       "kind": "score",
-      "ru": "Я замечаю момент, когда анализ перестаёт быть полезным, и могу его остановить.",
-      "en": "I notice when analysis stops being useful and can bring it to an end."
+      "ru": "Я обычно замечаю, когда размышления уже не помогают, и могу остановиться.",
+      "en": "I usually notice when thinking about something is no longer helpful and can stop."
     },
     {
       "id": "Z12",
@@ -735,8 +735,8 @@
       "subscale": "ambiguity",
       "reverse": true,
       "kind": "score",
-      "ru": "Задача без чёткой инструкции обычно вызывает у меня дискомфорт.",
-      "en": "A task without clear instructions usually makes me uncomfortable."
+      "ru": "Если в задаче нет чёткой инструкции, я обычно чувствую себя неуверенно.",
+      "en": "When a task has no clear instructions, I usually feel uncertain."
     },
     {
       "id": "T12",
@@ -744,8 +744,8 @@
       "subscale": "perspective_shift",
       "reverse": false,
       "kind": "score",
-      "ru": "Новые факты могут изменить моё мнение без ощущения, что я проиграл.",
-      "en": "New facts can change my opinion without making me feel that I have lost."
+      "ru": "Новые факты могут изменить моё мнение, и я не воспринимаю это как поражение.",
+      "en": "New facts can change my opinion, and I do not see that as a defeat."
     },
     {
       "id": "C12",
@@ -753,8 +753,8 @@
       "subscale": "autonomous_choice",
       "reverse": true,
       "kind": "score",
-      "ru": "Одобрение окружающих сильно влияет на то, сохраняю ли я собственное решение.",
-      "en": "Other people’s approval strongly affects whether I maintain my own decision."
+      "ru": "Если окружающие не одобряют моё решение, мне становится трудно его придерживаться.",
+      "en": "When other people disapprove of my decision, it becomes hard for me to stick to it."
     },
     {
       "id": "X13",
@@ -762,8 +762,8 @@
       "subscale": "group_participation",
       "reverse": false,
       "kind": "score",
-      "ru": "В новой группе я довольно быстро включаюсь в общий разговор.",
-      "en": "In a new group, I join the general conversation fairly quickly."
+      "ru": "В новой группе я обычно довольно быстро начинаю участвовать в разговоре.",
+      "en": "In a new group, I usually begin taking part in the conversation fairly quickly."
     },
     {
       "id": "Y13",
@@ -771,8 +771,8 @@
       "subscale": "self_control",
       "reverse": false,
       "kind": "score",
-      "ru": "Даже при сильных эмоциях я обычно контролирую свои слова и действия.",
-      "en": "Even with strong emotions, I usually control my words and actions."
+      "ru": "Даже при сильных эмоциях я обычно контролирую свои слова и поступки.",
+      "en": "Even when my emotions are strong, I usually control my words and actions."
     },
     {
       "id": "Z13",
@@ -780,8 +780,8 @@
       "subscale": "synthesis",
       "reverse": false,
       "kind": "score",
-      "ru": "Я часто соединяю знания из разных областей, чтобы объяснить наблюдение.",
-      "en": "I often combine knowledge from different fields to explain an observation."
+      "ru": "Чтобы объяснить что-то, я часто использую знания из разных областей.",
+      "en": "To explain something, I often use knowledge from different fields."
     },
     {
       "id": "CT01",
@@ -790,8 +790,8 @@
       "reverse": false,
       "kind": "consistency",
       "compareTo": "T07",
-      "ru": "Если подход зашёл в тупик, я легко проверяю другой вариант.",
-      "en": "If an approach reaches a dead end, I readily test another option."
+      "ru": "Если выбранный способ не помогает, я легко пробую другой.",
+      "en": "If the chosen approach does not help, I readily try another."
     },
     {
       "id": "T13",
@@ -799,8 +799,8 @@
       "subscale": "routine_flexibility",
       "reverse": false,
       "kind": "score",
-      "ru": "Я способен менять привычный распорядок под новые обстоятельства.",
-      "en": "I can change my usual routine to fit new circumstances."
+      "ru": "Я могу изменить привычный распорядок, если обстоятельства этого требуют.",
+      "en": "I can change my usual routine when circumstances require it."
     },
     {
       "id": "C13",
@@ -808,8 +808,8 @@
       "subscale": "resentment",
       "reverse": false,
       "kind": "score",
-      "ru": "Если я согласился добровольно, я не использую это позже как скрытый долг другого человека.",
-      "en": "If I agreed voluntarily, I do not later treat it as a hidden debt owed by someone else."
+      "ru": "Если я сам согласился помочь, я потом не жду, что мне обязательно отплатят.",
+      "en": "If I chose to help, I do not later expect to be repaid for it."
     },
     {
       "id": "X14",
@@ -817,8 +817,8 @@
       "subscale": "group_participation",
       "reverse": false,
       "kind": "score",
-      "ru": "На общих встречах я чаще участвую, чем наблюдаю со стороны.",
-      "en": "At group gatherings, I participate more often than I observe from the side."
+      "ru": "На общих встречах я обычно активно участвую, а не только наблюдаю.",
+      "en": "At group gatherings, I usually participate actively rather than only observe."
     },
     {
       "id": "Y14",
@@ -826,8 +826,8 @@
       "subscale": "self_control",
       "reverse": true,
       "kind": "score",
-      "ru": "В состоянии раздражения я иногда делаю то, о чём позже жалею.",
-      "en": "When irritated, I sometimes do things that I later regret."
+      "ru": "Когда я раздражён, я иногда говорю или делаю то, о чём потом жалею.",
+      "en": "When I am irritated, I sometimes say or do things that I later regret."
     },
     {
       "id": "Z14",
@@ -835,8 +835,8 @@
       "subscale": "synthesis",
       "reverse": true,
       "kind": "score",
-      "ru": "При решении задачи я сначала ищу конкретную последовательность действий, а не общую модель.",
-      "en": "When solving a problem, I first look for a concrete sequence of actions rather than an overall model."
+      "ru": "Решая задачу, я сначала ищу пошаговый способ действий, а не общую схему.",
+      "en": "When solving a problem, I first look for step-by-step instructions rather than an overall framework."
     },
     {
       "id": "T14",
@@ -844,8 +844,8 @@
       "subscale": "routine_flexibility",
       "reverse": true,
       "kind": "score",
-      "ru": "Частые изменения привычного порядка быстро меня истощают.",
-      "en": "Frequent changes to my usual order quickly exhaust me."
+      "ru": "Частые изменения привычного порядка быстро меня утомляют.",
+      "en": "Frequent changes to my usual routine tire me quickly."
     },
     {
       "id": "C14",
@@ -853,8 +853,8 @@
       "subscale": "resentment",
       "reverse": true,
       "kind": "score",
-      "ru": "После уступки я нередко думаю, что окружающие теперь должны учитывать это в ответ.",
-      "en": "After making a concession, I often feel that others now owe me consideration in return."
+      "ru": "После своей уступки я нередко жду, что в следующий раз уступят мне.",
+      "en": "After I make a concession, I often expect others to give way to me next time."
     },
     {
       "id": "X15",
@@ -862,8 +862,8 @@
       "subscale": "group_participation",
       "reverse": true,
       "kind": "score",
-      "ru": "В группе мне комфортнее слушать других, чем занимать заметное место.",
-      "en": "In a group, I am more comfortable listening than taking a visible role."
+      "ru": "В группе мне обычно комфортнее слушать, чем быть в центре внимания.",
+      "en": "In a group, I am usually more comfortable listening than being the center of attention."
     },
     {
       "id": "Y15",
@@ -871,8 +871,8 @@
       "subscale": "self_control",
       "reverse": false,
       "kind": "score",
-      "ru": "Я могу отложить ответ, пока не стану спокойнее.",
-      "en": "I can postpone my response until I am calmer."
+      "ru": "Если я сильно расстроен, я могу отложить ответ, пока не успокоюсь.",
+      "en": "When I am very upset, I can delay my response until I calm down."
     },
     {
       "id": "CT02",
@@ -881,8 +881,8 @@
       "reverse": true,
       "kind": "consistency",
       "compareTo": "T14",
-      "ru": "Постоянные изменения распорядка заметно снижают мою энергию.",
-      "en": "Constant changes to routine noticeably reduce my energy."
+      "ru": "Если распорядок постоянно меняется, моя энергия заметно снижается.",
+      "en": "When my routine keeps changing, my energy drops noticeably."
     },
     {
       "id": "Z15",
@@ -890,8 +890,8 @@
       "subscale": "synthesis",
       "reverse": false,
       "kind": "score",
-      "ru": "Я склонен строить мысленные модели, объясняющие, как связаны отдельные факты.",
-      "en": "I tend to build mental models that explain how separate facts are connected."
+      "ru": "Я часто представляю общую схему, которая объясняет связь между отдельными фактами.",
+      "en": "I often form an overall picture that explains how separate facts are connected."
     },
     {
       "id": "T15",
@@ -899,8 +899,8 @@
       "subscale": "routine_flexibility",
       "reverse": false,
       "kind": "score",
-      "ru": "После короткой адаптации я могу продуктивно действовать в непривычном формате.",
-      "en": "After a short adjustment, I can work productively in an unfamiliar format."
+      "ru": "После недолгого привыкания я могу нормально работать в непривычных условиях.",
+      "en": "After a short adjustment, I can work effectively in unfamiliar conditions."
     },
     {
       "id": "C15",
@@ -908,8 +908,8 @@
       "subscale": "resentment",
       "reverse": false,
       "kind": "score",
-      "ru": "Я предпочитаю пересмотреть договорённость, а не молча накапливать недовольство.",
-      "en": "I prefer to renegotiate an arrangement rather than silently accumulate dissatisfaction."
+      "ru": "Если договорённость меня больше не устраивает, я предпочитаю обсудить её заново, а не молча раздражаться.",
+      "en": "If an arrangement no longer works for me, I prefer to discuss it again rather than stay silent and become resentful."
     },
     {
       "id": "X16",
@@ -917,8 +917,8 @@
       "subscale": "group_participation",
       "reverse": true,
       "kind": "score",
-      "ru": "В незнакомой компании мне нужно много времени, прежде чем я начну вести себя свободно.",
-      "en": "In an unfamiliar group, I need a lot of time before I begin acting freely."
+      "ru": "В незнакомой компании мне обычно нужно много времени, чтобы почувствовать себя свободно.",
+      "en": "In an unfamiliar group, I usually need a lot of time before I feel at ease."
     },
     {
       "id": "Y16",
@@ -926,8 +926,8 @@
       "subscale": "self_control",
       "reverse": true,
       "kind": "score",
-      "ru": "Моё поведение успевает резко измениться раньше, чем я понимаю, что именно чувствую.",
-      "en": "My behavior can change sharply before I understand what I am feeling."
+      "ru": "Иногда я резко меняю поведение ещё до того, как понимаю, что именно чувствую.",
+      "en": "Sometimes my behavior changes sharply before I understand what I am feeling."
     },
     {
       "id": "Z16",
@@ -935,8 +935,8 @@
       "subscale": "synthesis",
       "reverse": true,
       "kind": "score",
-      "ru": "В первую очередь я оцениваю идею по тому, работает ли она на практике.",
-      "en": "I evaluate an idea primarily by whether it works in practice."
+      "ru": "Я в первую очередь оцениваю идею по тому, работает ли она на практике.",
+      "en": "I judge an idea mainly by whether it works in practice."
     },
     {
       "id": "T16",
@@ -944,8 +944,8 @@
       "subscale": "adaptation_recovery",
       "reverse": false,
       "kind": "score",
-      "ru": "Я осваиваю новые правила, не пытаясь постоянно вернуть прежний порядок.",
-      "en": "I learn new rules without constantly trying to restore the old order."
+      "ru": "Осваивая новые правила, я обычно не пытаюсь всё время вернуть прежний порядок.",
+      "en": "When learning new rules, I usually do not keep trying to restore the old routine."
     },
     {
       "id": "C16",
@@ -953,8 +953,8 @@
       "subscale": "resentment",
       "reverse": true,
       "kind": "score",
-      "ru": "Я могу внешне показывать согласие, одновременно накапливая внутреннее сопротивление.",
-      "en": "I can appear agreeable while accumulating inner resistance."
+      "ru": "Иногда я внешне соглашаюсь, хотя внутри всё сильнее сопротивляюсь.",
+      "en": "Sometimes I appear to agree while resistance keeps growing inside me."
     },
     {
       "id": "Y17",
@@ -962,8 +962,8 @@
       "subscale": "uncertainty_tolerance",
       "reverse": false,
       "kind": "score",
-      "ru": "Неопределённость не заставляет меня сразу ожидать худшего.",
-      "en": "Uncertainty does not immediately make me expect the worst."
+      "ru": "Когда ситуация неясна, я не начинаю сразу ожидать худшего.",
+      "en": "When a situation is unclear, I do not immediately expect the worst."
     },
     {
       "id": "CC01",
@@ -972,8 +972,8 @@
       "reverse": false,
       "kind": "consistency",
       "compareTo": "C05",
-      "ru": "Я предпочитаю сообщить о несогласии раньше, чем оно превратится в скрытое раздражение.",
-      "en": "I prefer to state disagreement before it turns into hidden irritation."
+      "ru": "Я предпочитаю сказать о несогласии сразу, а не ждать, пока появится скрытое раздражение.",
+      "en": "I prefer to express disagreement early rather than wait until hidden irritation builds up."
     },
     {
       "id": "T17",
@@ -981,8 +981,8 @@
       "subscale": "adaptation_recovery",
       "reverse": true,
       "kind": "score",
-      "ru": "В новом месте я сначала стараюсь воссоздать знакомые условия и только потом начинаю действовать.",
-      "en": "In a new environment, I first try to recreate familiar conditions before I begin acting."
+      "ru": "В новом месте я стараюсь сначала создать привычные условия и только потом начинаю действовать.",
+      "en": "In a new place, I first try to recreate familiar conditions and only then begin to act."
     },
     {
       "id": "C17",
@@ -990,8 +990,8 @@
       "subscale": "self_preservation",
       "reverse": false,
       "kind": "score",
-      "ru": "После разумного компромисса я по-прежнему ясно понимаю собственные предпочтения.",
-      "en": "After a reasonable compromise, I still clearly understand my own preferences."
+      "ru": "После компромисса я всё ещё ясно понимаю, чего хочу сам.",
+      "en": "After a compromise, I still clearly understand what I want."
     },
     {
       "id": "Y18",
@@ -999,8 +999,8 @@
       "subscale": "uncertainty_tolerance",
       "reverse": true,
       "kind": "score",
-      "ru": "Неясные сигналы и отсутствие ответа быстро вызывают у меня тревогу.",
-      "en": "Ambiguous signals and a lack of response quickly make me anxious."
+      "ru": "Если я получаю непонятные сигналы или долго нет ответа, я быстро начинаю тревожиться.",
+      "en": "When signals are unclear or there is no response for a long time, I quickly become anxious."
     },
     {
       "id": "T18",
@@ -1008,8 +1008,8 @@
       "subscale": "adaptation_recovery",
       "reverse": false,
       "kind": "score",
-      "ru": "После вынужденной перестройки я обычно быстро возвращаюсь к нормальному уровню энергии.",
-      "en": "After a forced adjustment, I usually return to my normal energy level quickly."
+      "ru": "После вынужденных изменений я обычно быстро возвращаюсь к обычному уровню энергии.",
+      "en": "After forced changes, I usually return to my normal energy level quickly."
     },
     {
       "id": "C18",
@@ -1017,8 +1017,8 @@
       "subscale": "self_preservation",
       "reverse": true,
       "kind": "score",
-      "ru": "Продолжительная подстройка иногда приводит к тому, что я перестаю понимать, чего хочу сам.",
-      "en": "Prolonged adaptation sometimes makes me lose track of what I want myself."
+      "ru": "Если я долго подстраиваюсь под обстоятельства, мне иногда становится трудно понять, чего хочу сам.",
+      "en": "When I adapt to circumstances for a long time, I sometimes find it hard to understand what I want."
     },
     {
       "id": "Y19",
@@ -1026,8 +1026,8 @@
       "subscale": "uncertainty_tolerance",
       "reverse": false,
       "kind": "score",
-      "ru": "Я способен действовать, даже когда информации пока недостаточно.",
-      "en": "I can act even when the available information is incomplete."
+      "ru": "Я могу начать действовать, даже если у меня пока нет всей нужной информации.",
+      "en": "I can begin to act even when I do not yet have all the information I need."
     },
     {
       "id": "C19",
@@ -1035,8 +1035,8 @@
       "subscale": "self_preservation",
       "reverse": false,
       "kind": "score",
-      "ru": "После интенсивной совместной работы я могу восстановить свой обычный ритм без чувства потери себя.",
-      "en": "After intensive collaboration, I can restore my usual rhythm without feeling that I have lost myself."
+      "ru": "После длительной работы с другими я обычно могу вернуться к своему привычному ритму и не чувствовать, что потерял себя.",
+      "en": "After working closely with others for a long time, I can usually return to my own routine without feeling that I lost myself."
     },
     {
       "id": "Y20",
@@ -1044,8 +1044,8 @@
       "subscale": "uncertainty_tolerance",
       "reverse": true,
       "kind": "score",
-      "ru": "Когда я не могу предсказать развитие ситуации, мне трудно сосредоточиться на другом.",
-      "en": "When I cannot predict how a situation will unfold, it is hard for me to focus on anything else."
+      "ru": "Если я не понимаю, что будет дальше, мне трудно думать о чём-то другом.",
+      "en": "When I do not know what will happen next, it is hard for me to think about anything else."
     },
     {
       "id": "C20",
@@ -1053,8 +1053,8 @@
       "subscale": "self_preservation",
       "reverse": true,
       "kind": "score",
-      "ru": "Подстраиваясь под общие ожидания, я иногда перестаю проверять, подходит ли мне сделанный выбор.",
-      "en": "While adapting to shared expectations, I sometimes stop checking whether the choice still suits me."
+      "ru": "Подстраиваясь под общие ожидания, я иногда перестаю проверять, подходит ли этот выбор лично мне.",
+      "en": "While adapting to shared expectations, I sometimes stop checking whether the choice still suits me personally."
     },
     {
       "id": "CC02",
@@ -1063,8 +1063,19 @@
       "reverse": true,
       "kind": "consistency",
       "compareTo": "C16",
-      "ru": "Я способен выглядеть спокойным и согласным, пока внутри растёт сопротивление.",
-      "en": "I can look calm and agreeable while resistance grows inside me."
+      "ru": "Иногда я выгляжу спокойным и согласным, хотя внутри всё сильнее сопротивляюсь.",
+      "en": "Sometimes I look calm and agreeable while resistance keeps growing inside me."
     }
-  ]
+  ],
+  "wording_revision": {
+    "version": "2.1",
+    "scope": "All 100 Russian and English items reviewed and rewritten for plain language.",
+    "principles": [
+      "One main idea per item where possible",
+      "No romantic-relationship framing",
+      "Concrete everyday wording",
+      "Matched meaning in Russian and English",
+      "Preserved axis, subscale, reverse scoring, consistency links"
+    ]
+  }
 }
