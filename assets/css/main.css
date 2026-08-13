@@ -466,10 +466,36 @@
       .section-head { display:block; }
       .section-head .button-row { margin-top:12px; }
       .card { padding:14px; border-radius:15px; }
-      .test-card { min-height:500px; }
-      .answer-options { gap:5px; }
-      .answer-option label { min-height:40px; border-radius:10px; font-size:12px; }
-      .test-actions { display:grid; grid-template-columns:1fr 1fr; }
+      #view-test > .section-head,
+      #view-test .test-layout > aside { display:none; }
+      #view-test .test-layout { gap:0; }
+      .test-card {
+        height:calc(100dvh - 150px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        min-height:0;
+        max-height:calc(100dvh - 150px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        padding:12px;
+        overflow-y:auto;
+        overscroll-behavior:contain;
+      }
+      .question-meta { margin:10px 0 13px; }
+      .question-text { font-size:clamp(18px,5.4vw,23px); line-height:1.22; }
+      .question-hint { margin-top:7px; font-size:10px; line-height:1.4; }
+      .answer-scale { margin:16px 0 8px; }
+      .scale-labels { margin-bottom:8px; }
+      .answer-options { gap:7px; }
+      .answer-option label {
+        aspect-ratio:auto;
+        min-height:42px;
+        padding:8px 10px;
+        border-radius:10px;
+        font-size:12px;
+      }
+      .test-actions {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        margin-top:8px;
+      }
+      .test-actions .btn { min-height:40px; padding:8px 12px; }
       .scene-wrap { min-height:370px; }
       .scene-hud { max-width:195px; font-size:9px; }
       .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
@@ -505,6 +531,8 @@
 @media (max-width:620px) {
   .answer-options { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .answer-option.unknown { grid-column:1 / -1; }
+  .answer-option label { padding:8px 10px; }
+  .answer-option.unknown label { min-height:38px; padding-block:7px; }
   .subscale-grid { grid-template-columns:1fr; }
   .quality-row { align-items:flex-start; }
   .quality-values { flex-direction:column; align-items:flex-end; gap:2px; }
