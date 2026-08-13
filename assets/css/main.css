@@ -485,7 +485,7 @@
       .answer-options { gap:7px; }
       .answer-option label {
         aspect-ratio:auto;
-        min-height:42px;
+        min-height:80px;
         padding:8px 10px;
         border-radius:10px;
         font-size:12px;
